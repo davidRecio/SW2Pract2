@@ -105,5 +105,5 @@ public class Controlador {
 //                     respuesta = scanner.nextLine();
 //                     System.out.println("¿Es valido el xml con su xsd? "+  vXSD.validarXSD("./files/xsd/recetario.xsd", "./files/xml/"+respuesta+".xml")); 
 //   } 
-      
+       
 }
