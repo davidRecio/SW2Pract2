@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Users/david/Documents/GitHub/SW2RecetarioParte2/SW2Pract2/Practica2SOAPClass/build/generated-sources/jax-ws/resources/ControladorWeb.wsdl" uri="wsdl/ControladorWeb.wsdl"/>
+    <system systemId="file:/C:/Users/david/Documents/GitHub/SW2RecetarioParte2/SW2Pract2/Practica2SOAPClass/build/generated-sources/jax-ws/resources/ControladorWeb_schema1.xsd" uri="wsdl/ControladorWeb_schema1.xsd"/>
+</catalog>

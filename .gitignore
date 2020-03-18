@@ -10,3 +10,6 @@ Practica2SOAPClass/nbproject/genfiles.properties
 =======
 >>>>>>> 99f3d664ecd94ca4eca4752eacbe0734257d885c
 /Practica2SOAPClass/build/
+/Practica2SOAPClienteJava/build/
+*.properties
+Practica2SOAPClienteJava/nbproject/project.xml
