@@ -5,6 +5,8 @@
  */
 package Controlador;
 
+import Recetarios.Receta;
+import java.util.ArrayList;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -18,6 +20,7 @@ import javax.jws.WebParam;
 @WebService(serviceName = "ControladorWeb")
 public class ControladorWeb {
 
+    ArrayList<Receta> recetaArrayList = new ArrayList();
     /**
      * This is a sample web service operation
      */
@@ -25,4 +28,12 @@ public class ControladorWeb {
     public String hello(@WebParam(name = "name") String txt) {
         return "Hello " + txt + " !";
     }
+    
+       public void obtenerReceta(@WebParam(name = "arrayListRecetas") ArrayList<Receta> arrayListRecetas)  {
+   for(Receta ele:recetaArrayList){
+                         System.out.println(ele.getNombre());
+                    }
+   }
+     
+      
 }
