@@ -18,8 +18,8 @@
     </target>
     <target name="wsimport-client-ControladorWeb" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/ControladorWeb"/>
-        <property name="wsdl-ControladorWeb" location="xml-resources/web-service-references/ControladorWeb/wsdl/ControladorWeb.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/ControladorWeb" destdir="${build.generated.dir}/jax-wsCache/ControladorWeb" wsdl="${wsdl-ControladorWeb}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="file:/C:/Users/david/Documents/GitHub/SW2RecetarioParte2/SW2Pract2/Practica2SOAPClass/build/generated-sources/jax-ws/resources/ControladorWeb.wsdl" xnocompile="true" xendorsed="true">
+        <property name="wsdl-ControladorWeb" location="xml-resources/web-service-references/ControladorWeb/wsdl/localhost_8080/Practica2SOAPClass/ControladorWeb.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/ControladorWeb" destdir="${build.generated.dir}/jax-wsCache/ControladorWeb" wsdl="${wsdl-ControladorWeb}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/Practica2SOAPClass/ControladorWeb?wsdl" xnocompile="true" xendorsed="true" package="practica2soapclientejava">
             <depends file="${wsdl-ControladorWeb}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/ControladorWeb"/>
         </wsimport>
@@ -31,7 +31,7 @@
     </target>
     <target name="wsimport-client-clean-ControladorWeb" depends="-init-project">
         <delete dir="${build.generated.dir}/jax-wsCache/ControladorWeb"/>
-        <delete dir="${build.generated.sources.dir}/jax-ws/controlador"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/practica2soapclientejava"/>
     </target>
     <target name="wsimport-client-generate" depends="wsimport-client-ControladorWeb"/>
 </project>

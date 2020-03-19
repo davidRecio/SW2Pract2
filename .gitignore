@@ -13,3 +13,6 @@ Practica2SOAPClass/nbproject/genfiles.properties
 /Practica2SOAPClienteJava/build/
 *.properties
 Practica2SOAPClienteJava/nbproject/project.xml
+/Practica2SOAPClass/dist/
+/Practica2SOAPClienteJava/dist/
+/Practica2SOAPClienteJava2/nbproject/private/

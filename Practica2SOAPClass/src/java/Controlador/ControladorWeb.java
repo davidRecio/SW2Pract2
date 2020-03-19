@@ -29,10 +29,17 @@ public class ControladorWeb {
         return "Hello " + txt + " !";
     }
     
-       public void obtenerReceta(@WebParam(name = "arrayListRecetas") ArrayList<Receta> arrayListRecetas)  {
-   for(Receta ele:recetaArrayList){
-                         System.out.println(ele.getNombre());
+       public Receta obtenerReceta(@WebParam(name = "nombreReceta") String nombreReceta ,@WebParam(name = "arrayListRecetas") ArrayList<Receta> arrayListRecetas)  {
+   Receta resultado= new Receta();
+                         for(Receta ele:arrayListRecetas){
+                               
+                         if(ele.getNombre().equals(nombreReceta)){
+                             resultado=ele;
+                             return resultado;
+                         }
                     }
+                          resultado=null;
+                         return resultado;
    }
      
       

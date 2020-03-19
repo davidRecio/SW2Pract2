@@ -3,9 +3,9 @@
   <services/>
   <clients>
     <client name="ControladorWeb">
-      <wsdl-url>file:/C:/Users/david/Documents/GitHub/SW2RecetarioParte2/SW2Pract2/Practica2SOAPClass/build/generated-sources/jax-ws/resources/ControladorWeb.wsdl</wsdl-url>
-      <local-wsdl-file>ControladorWeb.wsdl</local-wsdl-file>
-      <package-name>controlador</package-name>
+      <wsdl-url>http://localhost:8080/Practica2SOAPClass/ControladorWeb?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8080/Practica2SOAPClass/ControladorWeb.wsdl</local-wsdl-file>
+      <package-name forceReplace="true">practica2soapclientejava</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -22,7 +22,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>file:/C:/Users/david/Documents/GitHub/SW2RecetarioParte2/SW2Pract2/Practica2SOAPClass/build/generated-sources/jax-ws/resources/ControladorWeb.wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8080/Practica2SOAPClass/ControladorWeb?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -31,6 +31,10 @@
         <wsimport-option>
           <wsimport-option-name>xendorsed</wsimport-option-name>
           <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>package</wsimport-option-name>
+          <wsimport-option-value>practica2soapclientejava</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>

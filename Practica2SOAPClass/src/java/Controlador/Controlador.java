@@ -10,6 +10,7 @@ import java.util.Scanner;
  *
  * @author david
  */
+//"http://localhost:8080/Practica2SOAPClass/ControladorWeb"
 public class Controlador {
     Marsalling mrs = new Marsalling();
     //ValidarXSD vXSD = new ValidarXSD();
@@ -34,8 +35,25 @@ public class Controlador {
         return recetario;
     }
     
- 
-   
+  public Receta obtenerReceta(String nombreReceta, ArrayList<Receta> arrayListRecetas)  {
+   Receta resultado= new Receta();
+                         for(Receta ele:arrayListRecetas){
+                               
+                         if(ele.getNombre().equals(nombreReceta)){
+                             resultado=ele;
+                             return resultado;
+                         }
+                    }
+                          resultado=null;
+                         return resultado;
+   }
+//    public void obtenerReceta( ArrayList<Receta> arrayListRecetas)  {
+//  
+//                         for(Receta ele:arrayListRecetas){
+//                               
+//                         System.out.println(ele.getNombre());
+//                    }
+//   }
 //   public void crearRecetario (){
 //       recetario=co.crearRecetario(recetaArrayList);
 //       modelo.listarRecetario(recetario);

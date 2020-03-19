@@ -5,14 +5,9 @@
  */
 package practica2soapclientejava;
 
-import controlador.ControladorWeb;
-import controlador.ControladorWeb_Service;
-import controlador.Receta;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+
+
 
 /**
  *
@@ -24,23 +19,30 @@ public class Practica2SOAPClienteJava {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-     
-//        try {
+        // TODO code application logic here
+        
+         ArrayList<Receta> recetaArrayList = new ArrayList();
        
          Receta receta = new Receta();
+        ArrayList<String> ingrediente = new  ArrayList();
+    
+     
+        ingrediente.add("Cabra");
+         ingrediente.add("Camello");
+        
          
+         receta.setDificultad("Facil");
+         receta.setNombre("Mejunje");
+         receta.setPrecio(2.0);
          
+         recetaArrayList.add(receta);
          
-            
-            ControladorWeb_Service controladorWeb_Service = new ControladorWeb_Service();
-           ControladorWeb controladorWebPort = controladorWeb_Service.getControladorWebPort();
-           
-//            Double result=controladorWebPort.addNumbers(num1, num2);
-//            System.out.println("El resultado es "+result);
-//            
-//        } catch (IOException ex) {
-//            Logger.getLogger(Launcher.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+          ControladorWeb_Service controladorWeb_Service = new ControladorWeb_Service();
+             ControladorWeb CWPort = controladorWeb_Service.getControladorWebPort();
+            // System.out.println(CWPort.hello("hahaha"));
+             Receta result =CWPort.obtenerReceta("Mejunje", recetaArrayList);
+             System.out.println(result.getNombre());
+        
     }
     
 }
