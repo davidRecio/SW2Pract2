@@ -28,7 +28,7 @@ public class ControladorWeb {
     public String hello(@WebParam(name = "name") String txt) {
         return "Hello " + txt + " !";
     }
-    
+    @WebMethod(operationName = "obtenerReceta")
        public Receta obtenerReceta(@WebParam(name = "nombreReceta") String nombreReceta ,@WebParam(name = "arrayListRecetas") ArrayList<Receta> arrayListRecetas)  {
    Receta resultado= new Receta();
                          for(Receta ele:arrayListRecetas){

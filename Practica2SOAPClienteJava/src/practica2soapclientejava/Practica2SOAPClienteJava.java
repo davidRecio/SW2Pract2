@@ -6,6 +6,7 @@
 package practica2soapclientejava;
 
 import java.util.ArrayList;
+import practica2soapclientejava.Receta.Ingrediente;
 
 
 
@@ -24,13 +25,14 @@ public class Practica2SOAPClienteJava {
          ArrayList<Receta> recetaArrayList = new ArrayList();
        
          Receta receta = new Receta();
-        ArrayList<String> ingrediente = new  ArrayList();
+        ArrayList<String> ingrediente2 = new  ArrayList();
     
      
-        ingrediente.add("Cabra");
-         ingrediente.add("Camello");
-        
-         
+        ingrediente2.add("Cabra");
+         ingrediente2.add("Camello");
+        Ingrediente ing=new Ingrediente();
+        ing.ingrediente=ingrediente2;
+         receta.setIngrediente(ing);
          receta.setDificultad("Facil");
          receta.setNombre("Mejunje");
          receta.setPrecio(2.0);
@@ -41,7 +43,7 @@ public class Practica2SOAPClienteJava {
              ControladorWeb CWPort = controladorWeb_Service.getControladorWebPort();
             // System.out.println(CWPort.hello("hahaha"));
              Receta result =CWPort.obtenerReceta("Mejunje", recetaArrayList);
-             System.out.println(result.getNombre());
+             System.out.println(result.getIngrediente().getIngrediente());
         
     }
     
