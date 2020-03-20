@@ -4,30 +4,68 @@
 <xsd:import namespace="http://Controlador/" schemaLocation="http://localhost:8080/Practica2SOAPClass/ControladorWeb?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="obtenerReceta">
-<part name="parameters" element="tns:obtenerReceta"/>
-</message>
-<message name="obtenerRecetaResponse">
-<part name="parameters" element="tns:obtenerRecetaResponse"/>
-</message>
 <message name="hello">
 <part name="parameters" element="tns:hello"/>
 </message>
 <message name="helloResponse">
 <part name="parameters" element="tns:helloResponse"/>
 </message>
+<message name="crearReceta">
+<part name="parameters" element="tns:crearReceta"/>
+</message>
+<message name="crearRecetaResponse">
+<part name="parameters" element="tns:crearRecetaResponse"/>
+</message>
+<message name="obtenerReceta">
+<part name="parameters" element="tns:obtenerReceta"/>
+</message>
+<message name="obtenerRecetaResponse">
+<part name="parameters" element="tns:obtenerRecetaResponse"/>
+</message>
+<message name="crearRecetario">
+<part name="parameters" element="tns:crearRecetario"/>
+</message>
+<message name="crearRecetarioResponse">
+<part name="parameters" element="tns:crearRecetarioResponse"/>
+</message>
 <portType name="ControladorWeb">
-<operation name="obtenerReceta">
-<input wsam:Action="http://Controlador/ControladorWeb/obtenerRecetaRequest" message="tns:obtenerReceta"/>
-<output wsam:Action="http://Controlador/ControladorWeb/obtenerRecetaResponse" message="tns:obtenerRecetaResponse"/>
-</operation>
 <operation name="hello">
 <input wsam:Action="http://Controlador/ControladorWeb/helloRequest" message="tns:hello"/>
 <output wsam:Action="http://Controlador/ControladorWeb/helloResponse" message="tns:helloResponse"/>
 </operation>
+<operation name="crearReceta">
+<input wsam:Action="http://Controlador/ControladorWeb/crearRecetaRequest" message="tns:crearReceta"/>
+<output wsam:Action="http://Controlador/ControladorWeb/crearRecetaResponse" message="tns:crearRecetaResponse"/>
+</operation>
+<operation name="obtenerReceta">
+<input wsam:Action="http://Controlador/ControladorWeb/obtenerRecetaRequest" message="tns:obtenerReceta"/>
+<output wsam:Action="http://Controlador/ControladorWeb/obtenerRecetaResponse" message="tns:obtenerRecetaResponse"/>
+</operation>
+<operation name="crearRecetario">
+<input wsam:Action="http://Controlador/ControladorWeb/crearRecetarioRequest" message="tns:crearRecetario"/>
+<output wsam:Action="http://Controlador/ControladorWeb/crearRecetarioResponse" message="tns:crearRecetarioResponse"/>
+</operation>
 </portType>
 <binding name="ControladorWebPortBinding" type="tns:ControladorWeb">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="hello">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="crearReceta">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="obtenerReceta">
 <soap:operation soapAction=""/>
 <input>
@@ -37,7 +75,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="hello">
+<operation name="crearRecetario">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

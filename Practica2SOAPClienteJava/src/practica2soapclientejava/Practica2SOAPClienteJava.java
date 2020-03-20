@@ -20,31 +20,40 @@ public class Practica2SOAPClienteJava {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        
-         ArrayList<Receta> recetaArrayList = new ArrayList();
-       
-         Receta receta = new Receta();
-        ArrayList<String> ingrediente2 = new  ArrayList();
     
-     
+        ArrayList<Receta> recetaArrayList = new ArrayList();
+        String resultado = "";
+        Receta receta = new Receta();
+        ArrayList<String> ingrediente2 = new ArrayList();
+
         ingrediente2.add("Cabra");
-         ingrediente2.add("Camello");
-        Ingrediente ing=new Ingrediente();
-        ing.ingrediente=ingrediente2;
-         receta.setIngrediente(ing);
-         receta.setDificultad("Facil");
-         receta.setNombre("Mejunje");
-         receta.setPrecio(2.0);
-         
-         recetaArrayList.add(receta);
-         
-          ControladorWeb_Service controladorWeb_Service = new ControladorWeb_Service();
-             ControladorWeb CWPort = controladorWeb_Service.getControladorWebPort();
-            // System.out.println(CWPort.hello("hahaha"));
-             Receta result =CWPort.obtenerReceta("Mejunje", recetaArrayList);
-             System.out.println(result.getIngrediente().getIngrediente());
-        
-    }
+        ingrediente2.add("Camello");
+        Ingrediente ing = new Ingrediente();
+        ing.ingrediente = ingrediente2;
+        receta.setIngrediente(ing);
+        receta.setDificultad("Facil");
+        receta.setNombre("Mejunje");
+        receta.setPrecio(2.0);
+        recetaArrayList.add(receta);
+
+        ControladorWeb_Service controladorWeb_Service = new ControladorWeb_Service();
+        ControladorWeb CWPort = controladorWeb_Service.getControladorWebPort();
+        if (CWPort.crearReceta("Mejunje", "Facil", ingrediente2, 2.00, recetaArrayList).isEmpty()) {
+            System.out.println("error en la creacion de receta");
+        } else {
+            System.out.println("la creacion de receta es exitosa");
+        }
+       Recetario recetario= CWPort.crearRecetario("libro1", recetaArrayList, 10.0);
+        if (recetario.getNombre()==null) {
+            System.out.println("error en la creacion de recetario");
+        } else {
+            System.out.println("la creacion de recetario es exitoso");
+        }
+
     
+             Receta result =CWPort.obtenerReceta("Mejunje", recetario);
+             System.out.println(result.getIngrediente().getIngrediente());
+
+    }
+
 }

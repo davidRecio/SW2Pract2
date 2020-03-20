@@ -80,4 +80,37 @@ public class Modelo {
 
     }
 
+    protected String listarRecetarioWeb(Recetario recetario) {
+          String recetas="", result="";
+          
+          if (recetario != null) {
+            for (Receta elemeto : recetario.getRecetas()) {
+                 recetas=recetas +elemeto.getNombre()+ ",";
+            }
+            recetas=recetas.substring(0, recetas.length());
+             result="Este es el nombre del recetario : " + recetario.getNombre()+ ", sus recetas son: "+recetas+" y el precio de este recetario es: "+recetario.getPrecio();
+ 
+        }else{
+          result="No existe el recetario";
+          }
+          return result;
+    }
+
+    protected String listarRecetaWeb(Receta receta) {
+         String ingredientes="", result="";
+        if (receta != null) {
+                     for (String elemeto : receta.getIngrediente()) {
+                   ingredientes=ingredientes +elemeto+ ",";
+            }
+             ingredientes=ingredientes.substring(0, ingredientes.length());
+             
+           result="Este es el nombre de la receta elegida :" + receta.getNombre()+ 
+                   ", esta es la dificultad de la receta elegida : " + receta.getDificultad()+
+                   ", estos son los ingredientes: "+ingredientes+" y el precio de la receta es :" + receta.getPrecio();
+        }else{
+            result="No existe la receta";
+        }
+        return result;
+    }
+
 }

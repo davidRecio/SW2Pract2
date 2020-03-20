@@ -6,6 +6,7 @@
 package Controlador;
 
 import Recetarios.Receta;
+import Recetarios.Recetario;
 import java.util.ArrayList;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
@@ -19,8 +20,11 @@ import javax.jws.WebParam;
  */
 @WebService(serviceName = "ControladorWeb")
 public class ControladorWeb {
-
-    ArrayList<Receta> recetaArrayList = new ArrayList();
+   Recetario recetario = new Recetario();
+    CreadorObjetos co= new CreadorObjetos();
+      Modelo modelo = new Modelo();
+      Receta receta = new Receta();
+   // ArrayList<Receta> recetaArrayList = new ArrayList();
     /**
      * This is a sample web service operation
      */
@@ -28,19 +32,57 @@ public class ControladorWeb {
     public String hello(@WebParam(name = "name") String txt) {
         return "Hello " + txt + " !";
     }
-    @WebMethod(operationName = "obtenerReceta")
-       public Receta obtenerReceta(@WebParam(name = "nombreReceta") String nombreReceta ,@WebParam(name = "arrayListRecetas") ArrayList<Receta> arrayListRecetas)  {
-   Receta resultado= new Receta();
-                         for(Receta ele:arrayListRecetas){
-                               
-                         if(ele.getNombre().equals(nombreReceta)){
-                             resultado=ele;
-                             return resultado;
-                         }
-                    }
-                          resultado=null;
-                         return resultado;
-   }
-     
+    
+    @WebMethod(operationName = "crearRecetario")
+    public Recetario crearRecetario(@WebParam(name = "nombreRecetario") String nombreRecetario,
+            @WebParam(name = "recetaArrayList") ArrayList<Receta> recetaArrayList,
+            @WebParam(name = "precioRecetario") Double precioRecetario) {
+
+    
+        recetario = co.crearRecetarioWeb(nombreRecetario, recetaArrayList, precioRecetario);
+         if(modelo.listarRecetarioWeb(recetario).equals("No existe el recetario")){
+            Recetario vacio=new Recetario();
+            return vacio;
+        }else{
+          return recetario;
+        }
+       
       
+    }
+
+    @WebMethod(operationName = "crearReceta")
+    public ArrayList<Receta> crearReceta(@WebParam(name = "nombreReceta") String nombreReceta,
+            @WebParam(name = "dificultadReceta") String dificultadReceta,
+            @WebParam(name = "ingredientes") ArrayList<String> ingredientes,
+            @WebParam(name = "precioReceta") Double precioReceta,
+            @WebParam(name = "recetaArrayList") ArrayList<Receta> recetaArrayList) {
+
+       
+        receta = co.crearRecetaWeb(nombreReceta, dificultadReceta, ingredientes, precioReceta);
+        recetaArrayList.add(receta);
+      
+        if(modelo.listarRecetaWeb(receta).equals("No existe la receta")){
+            ArrayList<Receta> vacio=new ArrayList();
+            return vacio;
+        }else{
+        return recetaArrayList;
+        }
+        
+    }
+
+    @WebMethod(operationName = "obtenerReceta")
+    public Receta obtenerReceta(@WebParam(name = "nombreReceta") String nombreReceta, @WebParam(name = "recetario") Recetario recetario) {
+        Receta resultado = new Receta();
+        for (Receta ele : recetario.getRecetas()) {
+
+            if (ele.getNombre().equals(nombreReceta)) {
+                resultado = ele;
+                return resultado;
+            }
+        }
+        resultado = null;
+        return resultado;
+    }
+
+
 }

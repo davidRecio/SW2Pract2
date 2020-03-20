@@ -51,4 +51,27 @@ public class CreadorObjetos {
         }
         return recetario;
     }
+
+   protected Receta crearRecetaWeb(String Nombre, String Dificultad, ArrayList<String> ingredientes, Double Precio ) {
+        Receta receta = new Receta();
+        receta.setNombre(Nombre);
+        receta.setDificultad(Dificultad);
+        receta.setIngrediente(ingredientes);
+        receta.setPrecio(Precio);
+        return receta;
+    }
+
+    Recetario crearRecetarioWeb(String nombreRecetario,ArrayList<Receta> recetaArrayList, Double precioRecetario) {
+        
+         Recetario recetario = new Recetario();
+        if (recetaArrayList.isEmpty()) {
+            System.err.println("Debes crear recetas antes");
+            recetario = null;
+        } else {
+            recetario.setNombre(nombreRecetario);
+            recetario.setRecetas(recetaArrayList);
+            recetario.setPrecio(precioRecetario);
+        }
+        return recetario;
+    }
 }
