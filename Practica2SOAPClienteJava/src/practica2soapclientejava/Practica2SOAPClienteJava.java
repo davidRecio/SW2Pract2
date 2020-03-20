@@ -35,6 +35,8 @@ public class Practica2SOAPClienteJava {
         receta.setNombre("Mejunje");
         receta.setPrecio(2.0);
         recetaArrayList.add(receta);
+        
+        String nombreFichero="prueba.xml";
 
         ControladorWeb_Service controladorWeb_Service = new ControladorWeb_Service();
         ControladorWeb CWPort = controladorWeb_Service.getControladorWebPort();
@@ -53,6 +55,10 @@ public class Practica2SOAPClienteJava {
     
              Receta result =CWPort.obtenerReceta("Mejunje", recetario);
              System.out.println(result.getIngrediente().getIngrediente());
+             
+             
+        CWPort.exportarRecetario(nombreFichero, recetario);
+   
 
     }
 

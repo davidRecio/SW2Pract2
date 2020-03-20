@@ -17,10 +17,11 @@ public class Controlador {
     Modelo modelo = new Modelo();
     CreadorObjetos co= new CreadorObjetos();
     ArrayList<Receta> recetaArrayList = new ArrayList();
+    Scanner scanner = new Scanner(System.in);
      
           Receta receta;
      Recetario recetario = new Recetario();
-    private void crearXMLRecetario(String nombreFichero, Recetario recetario){
+    public void exportarRecetario(String nombreFichero, Recetario recetario){
        mrs.crearXMLRecetario(nombreFichero, recetario);  
     }
      private void crearXMLReceta(String nombreReceta, String nombreFichero){
@@ -77,9 +78,10 @@ public class Controlador {
    
 //   public void exportarRecetario() {
 //       System.out.println("Introduce el nombre del fichero sin la extensión del recetario");
+//      String respuesta;
 //                     respuesta = scanner.nextLine();
 //                     if(respuesta.equals("recetarioDTD")!= true){
-//                      crearXMLRecetario(respuesta+ ".xml",recetario);
+//                      exportarRecetario(respuesta+ ".xml",recetario);
 //                     }else{
 //                         System.out.println("Ese nombre esta prohibido");
 //                     }

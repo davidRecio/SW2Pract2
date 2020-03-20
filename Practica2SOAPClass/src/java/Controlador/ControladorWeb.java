@@ -24,6 +24,7 @@ public class ControladorWeb {
     CreadorObjetos co= new CreadorObjetos();
       Modelo modelo = new Modelo();
       Receta receta = new Receta();
+       Marsalling mrs = new Marsalling();
    // ArrayList<Receta> recetaArrayList = new ArrayList();
     /**
      * This is a sample web service operation
@@ -82,6 +83,11 @@ public class ControladorWeb {
         }
         resultado = null;
         return resultado;
+    }
+    @WebMethod(operationName = "exportarRecetario")
+      public void exportarRecetario(@WebParam(name = "nombreFichero")String nombreFichero, @WebParam(name = "recetario") Recetario recetario){
+       mrs.crearXMLRecetario(nombreFichero, recetario);  
+       
     }
 
 

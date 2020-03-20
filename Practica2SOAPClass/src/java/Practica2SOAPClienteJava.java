@@ -8,6 +8,7 @@
 
 import Controlador.Controlador;
 import Recetarios.Receta;
+import Recetarios.Recetario;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -47,12 +48,18 @@ public class Practica2SOAPClienteJava {
         Controlador control = new Controlador();
        Receta resultado= control.obtenerReceta("Mejunje",recetaArrayList);
        resultado.getNombre();
+       
+       Recetario recetario = new Recetario();
+       recetario.setNombre("libro1");
+       recetario.setRecetas(recetaArrayList);
+       recetario.setPrecio(10.0);
 //            Double result=controladorWebPort.addNumbers(num1, num2);
 //            System.out.println("El resultado es "+result);
 //            
 //        } catch (IOException ex) {
 //            Logger.getLogger(Launcher.class.getName()).log(Level.SEVERE, null, ex);
 //        }
+       control.exportarRecetario("prueba.xml", recetario);
     }
     
 }

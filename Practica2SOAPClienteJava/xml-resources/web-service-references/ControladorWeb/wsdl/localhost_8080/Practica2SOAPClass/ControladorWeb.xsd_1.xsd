@@ -12,6 +12,10 @@
 
 <xs:element name="crearRecetarioResponse" type="tns:crearRecetarioResponse"/>
 
+<xs:element name="exportarRecetario" type="tns:exportarRecetario"/>
+
+<xs:element name="exportarRecetarioResponse" type="tns:exportarRecetarioResponse"/>
+
 <xs:element name="hello" type="tns:hello"/>
 
 <xs:element name="helloResponse" type="tns:helloResponse"/>
@@ -102,5 +106,16 @@
 <xs:sequence>
 <xs:element name="return" type="tns:receta" minOccurs="0"/>
 </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="exportarRecetario">
+<xs:sequence>
+<xs:element name="nombreFichero" type="xs:string" minOccurs="0"/>
+<xs:element name="recetario" type="tns:recetario" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="exportarRecetarioResponse">
+<xs:sequence/>
 </xs:complexType>
 </xs:schema>

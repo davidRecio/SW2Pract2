@@ -29,10 +29,10 @@ protected void crearXMLReceta(String nombreFichero, Receta receta) {
      if(receta!=null){
         try {
             FileWriter fichero = null;
-            File file = new File("./files/xml/" + nombreFichero);
+            File file = new File("./" + nombreFichero);
             comprobarFichero(file);
             try {
-                fichero = new FileWriter("./files/xml/" + nombreFichero);
+                fichero = new FileWriter("./" + nombreFichero);
                 
                 
                 try {
@@ -80,10 +80,10 @@ protected Receta importarObjetoReceta(String nombreFichero){
 protected void crearXMLRecetario(String nombreFichero, Recetario recetario) {
         try {
             FileWriter fichero = null;
-            File file = new File("./files/xml/" + nombreFichero);
+            File file = new File("./" + nombreFichero);
             comprobarFichero(file);
             try {
-                fichero = new FileWriter("./files/xml/" + nombreFichero);
+                fichero = new FileWriter("./" + nombreFichero);
                 
                 
                 try {
