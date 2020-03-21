@@ -21,8 +21,8 @@ public class Controlador {
      
           Receta receta;
      Recetario recetario = new Recetario();
-    public void exportarRecetario(String nombreFichero, Recetario recetario){
-       mrs.crearXMLRecetario(nombreFichero, recetario);  
+    public void exportarRecetario(String nombreFichero, Recetario recetario, String ruta){
+       mrs.crearXMLRecetario(nombreFichero, recetario, ruta);  
     }
      private void crearXMLReceta(String nombreReceta, String nombreFichero){
             mrs.crearXMLReceta(nombreFichero,modelo.buscarReceta(nombreReceta,recetario)); 

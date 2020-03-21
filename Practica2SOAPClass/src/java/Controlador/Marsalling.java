@@ -77,13 +77,17 @@ protected Receta importarObjetoReceta(String nombreFichero){
       }  
        return receta;
     }  
-protected void crearXMLRecetario(String nombreFichero, Recetario recetario) {
+protected void crearXMLRecetario(String nombreFichero, Recetario recetario,String ruta) {
+     String sCarpAct = System.getProperty("user.dir");
+       File carpeta = new File(sCarpAct);
+       
+     
         try {
             FileWriter fichero = null;
-            File file = new File("C:/Users/david/Documents/GitHub/SW2RecetarioParte2/SW2Pract2/" + nombreFichero);
+            File file = new File(ruta+"/files/xml/" + nombreFichero);
             comprobarFichero(file);
             try {
-                fichero = new FileWriter("C:/Users/david/Documents/GitHub/SW2RecetarioParte2/SW2Pract2/" + nombreFichero);
+                fichero = new FileWriter(ruta+"/files/xml/" + nombreFichero);
                 
                 
                 try {

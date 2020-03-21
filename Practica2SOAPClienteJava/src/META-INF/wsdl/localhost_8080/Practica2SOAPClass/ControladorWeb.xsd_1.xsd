@@ -112,6 +112,7 @@
 <xs:sequence>
 <xs:element name="nombreFichero" type="xs:string" minOccurs="0"/>
 <xs:element name="recetario" type="tns:recetario" minOccurs="0"/>
+<xs:element name="ruta" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

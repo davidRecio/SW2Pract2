@@ -85,8 +85,8 @@ public class ControladorWeb {
         return resultado;
     }
     @WebMethod(operationName = "exportarRecetario")
-      public void exportarRecetario(@WebParam(name = "nombreFichero")String nombreFichero, @WebParam(name = "recetario") Recetario recetario){
-       mrs.crearXMLRecetario(nombreFichero, recetario);  
+      public void exportarRecetario(@WebParam(name = "nombreFichero")String nombreFichero, @WebParam(name = "recetario") Recetario recetario, @WebParam(name = "ruta") String ruta){
+       mrs.crearXMLRecetario(nombreFichero, recetario, ruta);  
        
     }
 

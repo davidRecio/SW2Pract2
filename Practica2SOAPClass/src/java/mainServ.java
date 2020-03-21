@@ -10,6 +10,7 @@ import Controlador.Controlador;
 import Recetarios.Receta;
 import Recetarios.Recetario;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author david
  */
-public class Practica2SOAPClienteJava {
+public class mainServ {
 
     /**
      * @param args the command line arguments
@@ -59,7 +60,17 @@ public class Practica2SOAPClienteJava {
 //        } catch (IOException ex) {
 //            Logger.getLogger(Launcher.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-       control.exportarRecetario("prueba.xml", recetario);
+      
+       String sCarpAct = System.getProperty("user.dir");
+       File carpeta = new File(sCarpAct);
+       
+        System.out.println(carpeta.getPath());
+         control.exportarRecetario("prueba.xml", recetario, carpeta.getPath());
+//       File[] archivos = carpeta.listFiles();
+//if (archivos == null || archivos.length == 0) {
+//    System.out.println("No hay elementos dentro de la carpeta actual");
+//    return;
+//}
     }
     
 }

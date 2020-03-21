@@ -5,6 +5,7 @@
  */
 package practica2soapclientejava;
 
+import java.io.File;
 import java.util.ArrayList;
 import practica2soapclientejava.Receta.Ingrediente;
 
@@ -25,7 +26,9 @@ public class Practica2SOAPClienteJava {
         String resultado = "";
         Receta receta = new Receta();
         ArrayList<String> ingrediente2 = new ArrayList();
-
+        String sCarpAct = System.getProperty("user.dir");
+        File carpeta = new File(sCarpAct);
+        
         ingrediente2.add("Cabra");
         ingrediente2.add("Camello");
         Ingrediente ing = new Ingrediente();
@@ -55,9 +58,11 @@ public class Practica2SOAPClienteJava {
     
              Receta result =CWPort.obtenerReceta("Mejunje", recetario);
              System.out.println(result.getIngrediente().getIngrediente());
-             
-             
-        CWPort.exportarRecetario(nombreFichero, recetario);
+  
+       
+       // System.out.println(carpeta.getPath());
+//             
+      CWPort.exportarRecetario(nombreFichero, recetario,carpeta.getPath());
    
 
     }
