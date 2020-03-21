@@ -80,10 +80,10 @@ protected Receta importarObjetoReceta(String nombreFichero){
 protected void crearXMLRecetario(String nombreFichero, Recetario recetario) {
         try {
             FileWriter fichero = null;
-            File file = new File("./" + nombreFichero);
+            File file = new File("C:/Users/david/Documents/GitHub/SW2RecetarioParte2/SW2Pract2/" + nombreFichero);
             comprobarFichero(file);
             try {
-                fichero = new FileWriter("./" + nombreFichero);
+                fichero = new FileWriter("C:/Users/david/Documents/GitHub/SW2RecetarioParte2/SW2Pract2/" + nombreFichero);
                 
                 
                 try {
