@@ -36,6 +36,10 @@
 
 <xs:element name="obtenerRecetaResponse" type="tns:obtenerRecetaResponse"/>
 
+<xs:element name="validarXSD" type="tns:validarXSD"/>
+
+<xs:element name="validarXSDResponse" type="tns:validarXSDResponse"/>
+
 <xs:complexType name="importarRecetario">
 <xs:sequence>
 <xs:element name="nombreFichero" type="xs:string" minOccurs="0"/>
@@ -89,6 +93,19 @@
 <xs:complexType name="crearRecetarioResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:recetario" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="validarXSD">
+<xs:sequence>
+<xs:element name="ruta" type="xs:string" minOccurs="0"/>
+<xs:element name="nombreFichero" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="validarXSDResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

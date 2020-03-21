@@ -13,14 +13,14 @@ import java.util.Scanner;
 //"http://localhost:8080/Practica2SOAPClass/ControladorWeb"
 public class Controlador {
     Marsalling mrs = new Marsalling();
-    //ValidarXSD vXSD = new ValidarXSD();
+    ValidarXSD vXSD = new ValidarXSD();
     Modelo modelo = new Modelo();
     CreadorObjetos co= new CreadorObjetos();
     ArrayList<Receta> recetaArrayList = new ArrayList();
     Scanner scanner = new Scanner(System.in);
-     
-          Receta receta;
+     Receta receta;
      Recetario recetario = new Recetario();
+     
     public void exportarRecetario(String nombreFichero, Recetario recetario, String ruta){
        mrs.crearXMLRecetario(nombreFichero, recetario, ruta);  
     }
@@ -48,6 +48,10 @@ public class Controlador {
                           resultado=null;
                          return resultado;
    }
+  public String validarXSD(String ruta, String nombrefichero) {
+      
+      return "¿Es valido el xml con su xsd? "+  vXSD.validarXSD(ruta+"/files/xsd/recetario.xsd", ruta+"/files/xml/"+nombrefichero);
+  }
 //    public void obtenerReceta( ArrayList<Receta> arrayListRecetas)  {
 //  
 //                         for(Receta ele:arrayListRecetas){

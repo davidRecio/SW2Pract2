@@ -28,9 +28,8 @@ public class Practica2SOAPClienteJava {
         ArrayList<String> ingrediente2 = new ArrayList();
         String sCarpAct = System.getProperty("user.dir");
         File carpeta = new File(sCarpAct);
-        String ruta=carpeta.getPath();
         Recetario recetario = null;
-        String nombreReceta="Mejunje";
+       
         
         ingrediente2.add("Cabra");
         ingrediente2.add("Camello");
@@ -44,6 +43,8 @@ public class Practica2SOAPClienteJava {
         
         String nombreFichero="prueba.xml";
         String nombreFichero2="pruebaReceta.xml";
+        String nombreReceta="Mejunje";
+        String ruta=carpeta.getPath();
 
         ControladorWeb_Service controladorWeb_Service = new ControladorWeb_Service();
         ControladorWeb CWPort = controladorWeb_Service.getControladorWebPort();
@@ -58,15 +59,16 @@ public class Practica2SOAPClienteJava {
 //        } else {
 //            System.out.println("la creacion de recetario es exitoso");
 //        }
-
-              recetario=CWPort.importarRecetario(nombreFichero, ruta);
-              CWPort.exportarReceta(nombreFichero2, recetario,nombreReceta, ruta);
-              
-              receta=CWPort.importarReceta(nombreFichero2, ruta);
-              
-              //receta =CWPort.obtenerReceta("Mejunje", recetario);
-             System.out.println(receta.getIngrediente().getIngrediente());
-  
+//
+//              recetario=CWPort.importarRecetario(nombreFichero, ruta);
+//              CWPort.exportarReceta(nombreFichero2, recetario,nombreReceta, ruta);
+//              
+//              receta=CWPort.importarReceta(nombreFichero2, ruta);
+//              
+//              //receta =CWPort.obtenerReceta("Mejunje", recetario);
+//             System.out.println(receta.getIngrediente().getIngrediente());
+          System.out.println(CWPort.validarXSD(ruta, "recetario1.xml"));
+          
        
        // System.out.println(carpeta.getPath());
 //             
