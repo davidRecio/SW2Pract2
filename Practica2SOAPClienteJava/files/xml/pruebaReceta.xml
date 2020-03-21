@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Receta dificultad="Facil">
+    <nombre>Mejunje</nombre>
+    <ingrediente>
+        <ingrediente>Cabra</ingrediente>
+        <ingrediente>Camello</ingrediente>
+    </ingrediente>
+    <precio>2.0</precio>
+</Receta>

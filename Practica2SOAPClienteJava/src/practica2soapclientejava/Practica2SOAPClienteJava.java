@@ -23,11 +23,14 @@ public class Practica2SOAPClienteJava {
     public static void main(String[] args) {
     
         ArrayList<Receta> recetaArrayList = new ArrayList();
-        String resultado = "";
+       
         Receta receta = new Receta();
         ArrayList<String> ingrediente2 = new ArrayList();
         String sCarpAct = System.getProperty("user.dir");
         File carpeta = new File(sCarpAct);
+        String ruta=carpeta.getPath();
+        Recetario recetario = null;
+        String nombreReceta="Mejunje";
         
         ingrediente2.add("Cabra");
         ingrediente2.add("Camello");
@@ -40,29 +43,34 @@ public class Practica2SOAPClienteJava {
         recetaArrayList.add(receta);
         
         String nombreFichero="prueba.xml";
+        String nombreFichero2="pruebaReceta.xml";
 
         ControladorWeb_Service controladorWeb_Service = new ControladorWeb_Service();
         ControladorWeb CWPort = controladorWeb_Service.getControladorWebPort();
-        if (CWPort.crearReceta("Mejunje", "Facil", ingrediente2, 2.00, recetaArrayList).isEmpty()) {
-            System.out.println("error en la creacion de receta");
-        } else {
-            System.out.println("la creacion de receta es exitosa");
-        }
-       Recetario recetario= CWPort.crearRecetario("libro1", recetaArrayList, 10.0);
-        if (recetario.getNombre()==null) {
-            System.out.println("error en la creacion de recetario");
-        } else {
-            System.out.println("la creacion de recetario es exitoso");
-        }
+//        if (CWPort.crearReceta("Mejunje", "Facil", ingrediente2, 2.00, recetaArrayList).isEmpty()) {
+//            System.out.println("error en la creacion de receta");
+//        } else {
+//            System.out.println("la creacion de receta es exitosa");
+//        }
+//        recetario= CWPort.crearRecetario("libro1", recetaArrayList, 10.0);
+//        if (recetario.getNombre()==null) {
+//            System.out.println("error en la creacion de recetario");
+//        } else {
+//            System.out.println("la creacion de recetario es exitoso");
+//        }
 
-    
-             Receta result =CWPort.obtenerReceta("Mejunje", recetario);
-             System.out.println(result.getIngrediente().getIngrediente());
+              recetario=CWPort.importarRecetario(nombreFichero, ruta);
+              CWPort.exportarReceta(nombreFichero2, recetario,nombreReceta, ruta);
+              
+              receta=CWPort.importarReceta(nombreFichero2, ruta);
+              
+              //receta =CWPort.obtenerReceta("Mejunje", recetario);
+             System.out.println(receta.getIngrediente().getIngrediente());
   
        
        // System.out.println(carpeta.getPath());
 //             
-      CWPort.exportarRecetario(nombreFichero, recetario,carpeta.getPath());
+     // CWPort.exportarRecetario(nombreFichero, recetario,carpeta.getPath());
    
 
     }

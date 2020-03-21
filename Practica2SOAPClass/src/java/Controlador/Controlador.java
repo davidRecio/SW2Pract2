@@ -24,15 +24,15 @@ public class Controlador {
     public void exportarRecetario(String nombreFichero, Recetario recetario, String ruta){
        mrs.crearXMLRecetario(nombreFichero, recetario, ruta);  
     }
-     private void crearXMLReceta(String nombreReceta, String nombreFichero){
-            mrs.crearXMLReceta(nombreFichero,modelo.buscarReceta(nombreReceta,recetario)); 
+     private void crearXMLReceta(String nombreReceta, String nombreFichero,String ruta){
+            mrs.crearXMLReceta(nombreFichero,modelo.buscarReceta(nombreReceta,recetario),ruta); 
     }
-    private Receta importarObjetoReceta(String nombreFichero){  
-        Receta receta = mrs.importarObjetoReceta(nombreFichero);
+    private Receta importarObjetoReceta(String nombreFichero,String ruta){  
+        Receta receta = mrs.importarReceta(nombreFichero,ruta);
         return receta;
     }
-        private Recetario importarObjetoRecetario(String nombreFichero){  
-        Recetario recetario = mrs.importarObjetoRecetario(nombreFichero);
+        private Recetario importarRecetario(String nombreFichero, String ruta){  
+        Recetario recetario = mrs.importarRecetario(nombreFichero,ruta);
         return recetario;
     }
     
@@ -101,7 +101,7 @@ public class Controlador {
 //       
 //                    System.out.println("Introduce el nombre del fichero sin la extensión del recetario");
 //                    respuesta = scanner.nextLine();
-//                    recetario= importarObjetoRecetario(respuesta+".xml");
+//                    recetario= importarRecetario(respuesta+".xml");
 //                    recetaArrayList=recetario.getRecetas();
 //                    modelo.listarRecetario(recetario);
 //   }
@@ -110,7 +110,7 @@ public class Controlador {
 //   
 //                    System.out.println("Introduce el nombre del fichero sin la extensión de la receta");
 //                    respuesta = scanner.nextLine();
-//                    receta= importarObjetoReceta(respuesta+".xml");
+//                    receta= importarReceta(respuesta+".xml");
 //                    recetaArrayList.add(receta);
 //                    modelo.listarReceta(receta);
 //   

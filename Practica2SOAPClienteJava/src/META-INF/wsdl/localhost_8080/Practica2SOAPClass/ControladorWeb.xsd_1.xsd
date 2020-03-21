@@ -12,6 +12,10 @@
 
 <xs:element name="crearRecetarioResponse" type="tns:crearRecetarioResponse"/>
 
+<xs:element name="exportarReceta" type="tns:exportarReceta"/>
+
+<xs:element name="exportarRecetaResponse" type="tns:exportarRecetaResponse"/>
+
 <xs:element name="exportarRecetario" type="tns:exportarRecetario"/>
 
 <xs:element name="exportarRecetarioResponse" type="tns:exportarRecetarioResponse"/>
@@ -20,34 +24,26 @@
 
 <xs:element name="helloResponse" type="tns:helloResponse"/>
 
+<xs:element name="importarReceta" type="tns:importarReceta"/>
+
+<xs:element name="importarRecetaResponse" type="tns:importarRecetaResponse"/>
+
+<xs:element name="importarRecetario" type="tns:importarRecetario"/>
+
+<xs:element name="importarRecetarioResponse" type="tns:importarRecetarioResponse"/>
+
 <xs:element name="obtenerReceta" type="tns:obtenerReceta"/>
 
 <xs:element name="obtenerRecetaResponse" type="tns:obtenerRecetaResponse"/>
 
-<xs:complexType name="crearRecetario">
+<xs:complexType name="importarRecetario">
 <xs:sequence>
-<xs:element name="nombreRecetario" type="xs:string" minOccurs="0"/>
-<xs:element name="recetaArrayList" type="tns:receta" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element name="precioRecetario" type="xs:double" minOccurs="0"/>
+<xs:element name="nombreFichero" type="xs:string" minOccurs="0"/>
+<xs:element name="ruta" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="receta">
-<xs:sequence>
-<xs:element name="nombre" type="xs:string" minOccurs="0"/>
-<xs:element name="ingrediente" minOccurs="0">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ingrediente" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="precio" type="xs:double" minOccurs="0"/>
-</xs:sequence>
-<xs:attribute name="dificultad" type="xs:string"/>
-</xs:complexType>
-
-<xs:complexType name="crearRecetarioResponse">
+<xs:complexType name="importarRecetarioResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:recetario" minOccurs="0"/>
 </xs:sequence>
@@ -67,6 +63,35 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="receta">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="ingrediente" minOccurs="0">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="ingrediente" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="precio" type="xs:double" minOccurs="0"/>
+</xs:sequence>
+<xs:attribute name="dificultad" type="xs:string"/>
+</xs:complexType>
+
+<xs:complexType name="crearRecetario">
+<xs:sequence>
+<xs:element name="nombreRecetario" type="xs:string" minOccurs="0"/>
+<xs:element name="recetaArrayList" type="tns:receta" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="precioRecetario" type="xs:double" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearRecetarioResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:recetario" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="hello">
 <xs:sequence>
 <xs:element name="name" type="xs:string" minOccurs="0"/>
@@ -77,6 +102,19 @@
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="exportarReceta">
+<xs:sequence>
+<xs:element name="nombreFichero" type="xs:string" minOccurs="0"/>
+<xs:element name="recetario" type="tns:recetario" minOccurs="0"/>
+<xs:element name="nombreReceta" type="xs:string" minOccurs="0"/>
+<xs:element name="ruta" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="exportarRecetaResponse">
+<xs:sequence/>
 </xs:complexType>
 
 <xs:complexType name="crearReceta">
@@ -103,6 +141,19 @@
 </xs:complexType>
 
 <xs:complexType name="obtenerRecetaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:receta" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="importarReceta">
+<xs:sequence>
+<xs:element name="nombreFichero" type="xs:string" minOccurs="0"/>
+<xs:element name="ruta" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="importarRecetaResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:receta" minOccurs="0"/>
 </xs:sequence>

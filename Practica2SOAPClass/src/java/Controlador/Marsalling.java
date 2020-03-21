@@ -25,14 +25,14 @@ import javax.xml.bind.Unmarshaller;
 public class Marsalling {
 
 
-protected void crearXMLReceta(String nombreFichero, Receta receta) {
+protected void crearXMLReceta(String nombreFichero, Receta receta,String ruta) {
      if(receta!=null){
         try {
             FileWriter fichero = null;
-            File file = new File("./" + nombreFichero);
+            File file = new File(ruta+"/files/xml/"+ nombreFichero);
             comprobarFichero(file);
             try {
-                fichero = new FileWriter("./" + nombreFichero);
+                fichero = new FileWriter(ruta+"/files/xml/" + nombreFichero);
                 
                 
                 try {
@@ -59,11 +59,11 @@ protected void crearXMLReceta(String nombreFichero, Receta receta) {
      
      }
     }
-protected Receta importarObjetoReceta(String nombreFichero){
+protected Receta importarReceta(String nombreFichero,String ruta){
     Receta receta= new Receta();
        try {  
    
-        File file = new File("./files/xml/" + nombreFichero);  
+        File file = new File(ruta+"/files/xml/" + nombreFichero);  
         JAXBContext jaxbContext = JAXBContext.newInstance(Receta.class);  
    
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();  
@@ -109,11 +109,11 @@ protected void crearXMLRecetario(String nombreFichero, Recetario recetario,Strin
             Logger.getLogger(Marsalling.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-protected Recetario importarObjetoRecetario(String nombreFichero){
+protected Recetario importarRecetario(String nombreFichero,String ruta){
     Recetario recetario= new Recetario();
        try {  
    
-        File file = new File("./files/xml/" + nombreFichero);  
+        File file = new File(ruta+"/files/xml/" + nombreFichero);  
         JAXBContext jaxbContext = JAXBContext.newInstance(Recetario.class);  
    
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();  

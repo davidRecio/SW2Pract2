@@ -85,10 +85,32 @@ public class ControladorWeb {
         return resultado;
     }
     @WebMethod(operationName = "exportarRecetario")
-      public void exportarRecetario(@WebParam(name = "nombreFichero")String nombreFichero, @WebParam(name = "recetario") Recetario recetario, @WebParam(name = "ruta") String ruta){
+      public void exportarRecetario(@WebParam(name = "nombreFichero")String nombreFichero,
+              @WebParam(name = "recetario") Recetario recetario,
+              @WebParam(name = "ruta") String ruta){
        mrs.crearXMLRecetario(nombreFichero, recetario, ruta);  
        
     }
-
+       @WebMethod(operationName = "importarRecetario")
+        public Recetario importarRecetario(@WebParam(name = "nombreFichero") String nombreFichero,
+                @WebParam(name = "ruta")String ruta){  
+        Recetario recetario = mrs.importarRecetario(nombreFichero,ruta);
+        return recetario;
+    }
+        @WebMethod(operationName = "exportarReceta")
+      public void exportarReceta(@WebParam(name = "nombreFichero")String nombreFichero,
+              @WebParam(name = "recetario") Recetario recetario,
+              @WebParam(name = "nombreReceta") String nombreReceta,
+              @WebParam(name = "ruta") String ruta){
+      mrs.crearXMLReceta(nombreFichero,modelo.buscarReceta(nombreReceta,recetario),ruta);  
+       
+    }
+       @WebMethod(operationName = "importarReceta")
+        public Receta importarReceta(@WebParam(name = "nombreFichero") String nombreFichero,
+                @WebParam(name = "ruta")String ruta){  
+        Receta receta = mrs.importarReceta(nombreFichero,ruta);
+        return receta;
+    }
+        
 
 }
