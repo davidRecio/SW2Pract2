@@ -19,14 +19,14 @@ import practica2soapclientejava.Recetario;
  * @author david
  */
 public class Modelo {
-    ArrayList<Receta> recetaArrayList = new ArrayList();
+    private ArrayList<Receta> recetaArrayList = new ArrayList();
     ControladorWeb_Service controladorWeb_Service = new ControladorWeb_Service();
     ControladorWeb CWPort = controladorWeb_Service.getControladorWebPort();
-    Receta receta = new Receta();
+    private Receta receta = null;
     ArrayList<String> ArrayIngrediente = new ArrayList();
     String sCarpAct = System.getProperty("user.dir");
     File carpeta = new File(sCarpAct);
-    Recetario recetario = null;
+    private Recetario recetario = null;
     Receta.Ingrediente ing = new Receta.Ingrediente();
     String ruta = carpeta.getPath();
 
@@ -59,11 +59,37 @@ public class Modelo {
             //System.out.println("la creacion de receta es exitosa");
             return true;
         }
-
     }
+      protected boolean obtenerRecetaRecetario(String nombreReceta) {
+
+        //ing.ingrediente = ingrediente;
+        receta =CWPort.obtenerReceta(nombreReceta, recetario); 
+        if (receta==null) {
+            //System.out.println("error en la creacion de receta");
+            return false;
+        } else {
+            //System.out.println("la creacion de receta es exitosa");
+            return true;
+        }
+    }
+       protected boolean obtenerReceta(String nombreReceta) {
+
+        //ing.ingrediente = ingrediente;
+        for(Receta receta:recetaArrayList){
+            
+            if(receta.getNombre().equals(nombreReceta)){
+                this.receta=receta;
+                return true;
+            }
+        }
+         return false;
+        
+    }
+    
+////exportar e importar     
     protected boolean exportarRecetario(String nombreFichero){
         try {
-             CWPort.exportarRecetario(nombreFichero, recetario,ruta);
+             CWPort.exportarRecetario(nombreFichero+".xml", recetario,ruta);
         } catch (Exception e) {
             return false;
         }
@@ -71,7 +97,7 @@ public class Modelo {
     }
  protected boolean exportarReceta(String nombreFichero, String nombreReceta){
         try {
-             CWPort.exportarReceta(nombreFichero, recetario,nombreReceta, ruta);
+             CWPort.exportarReceta(nombreFichero+".xml", recetario,nombreReceta, ruta);
         } catch (Exception e) {
             return false;
         }
@@ -80,7 +106,7 @@ public class Modelo {
  
     protected boolean importarRecetario(String nombreFichero){
         try {
-             recetario=CWPort.importarRecetario(nombreFichero, ruta);
+             recetario=CWPort.importarRecetario(nombreFichero+".xml", ruta);
         } catch (Exception e) {
             return false;
         }
@@ -88,18 +114,41 @@ public class Modelo {
     }
  protected boolean importarReceta(String nombreFichero){
         try {
-            receta=CWPort.importarReceta(nombreFichero, ruta);
+            receta=CWPort.importarReceta(nombreFichero+".xml", ruta);
         } catch (Exception e) {
             return false;
         }
         return true;
     }
- 
-          
-        
-        
-    
-        
-       
-    
+ //validar XSD
+ protected String validarXSD(String nombreFichero) {
+        return CWPort.validarXSD(ruta, nombreFichero);
+    }
+//getter and setters
+    public Receta getReceta() {
+        return receta;
+    }
+
+    public void setReceta(Receta receta) {
+        this.receta = receta;
+    }
+
+    public Recetario getRecetario() {
+        return recetario;
+    }
+
+    public void setRecetario(Recetario recetario) {
+        this.recetario = recetario;
+    }
+
+    public ArrayList<Receta> getRecetaArrayList() {
+        return recetaArrayList;
+    }
+
+    public void setRecetaArrayList(ArrayList<Receta> recetaArrayList) {
+        this.recetaArrayList = recetaArrayList;
+    }
+
+   
+   
 }
