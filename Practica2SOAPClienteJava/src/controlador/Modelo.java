@@ -87,41 +87,27 @@ public class Modelo {
     }
     
 ////exportar e importar     
-    protected boolean exportarRecetario(String nombreFichero){
-        try {
+    protected void exportarRecetario(String nombreFichero){
+        
              CWPort.exportarRecetario(nombreFichero+".xml", recetario,ruta);
-                 return true;
-        } catch (Exception e) {
-            return false;
-        }
+      
     
     }
- protected boolean exportarReceta(String nombreFichero, String nombreReceta){
-        try {
+ protected void exportarReceta(String nombreFichero, String nombreReceta){
+        
              CWPort.exportarReceta(nombreFichero+".xml", recetario,nombreReceta, ruta);
-              return true;
-        } catch (Exception e) {
-            return false;
-        }
-       
+    
     }
  
-    protected boolean importarRecetario(String nombreFichero){
-        try {
-             recetario=CWPort.importarRecetario(nombreFichero+".xml", ruta);
-              return true;
-        } catch (Exception e) {
-            return false;
-        }
+    protected void importarRecetario(String nombreFichero){
        
+             recetario=CWPort.importarRecetario(nombreFichero+".xml", ruta);
+    
     }
- protected boolean importarReceta(String nombreFichero){
-        try {
+ protected void importarReceta(String nombreFichero){
+       
             receta=CWPort.importarReceta(nombreFichero+".xml", ruta);
-             return true;
-        } catch (Exception e) {
-            return false;
-        }
+     
        
     }
  //validar XSD

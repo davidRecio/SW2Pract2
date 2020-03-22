@@ -33,23 +33,23 @@ public class Menu {
                     // Importar recetario
                     System.out.println("Introduce el nombre del fichero sin la extensión del recetario");
                     respuesta = scanner.nextLine();
-                    valor = modelo.importarRecetario(respuesta);
-                    if (valor == true) {
-                        System.out.println("El fichero se importo con exito");
-                    } else {
-                        System.err.println("El fichero no se pudo importar");
-                    }
+                     modelo.importarRecetario(respuesta);
+//                    if (valor == true) {
+//                        System.out.println("El fichero se importo con exito");
+//                    } else {
+//                        System.err.println("El fichero no se pudo importar");
+//                    }
                     break;
                 case 2:
                     //Exportar recetario
                     System.out.println("Introduce el nombre del fichero sin la extensión del recetario");
                     respuesta = scanner.nextLine();
-                    valor = modelo.exportarRecetario(respuesta);
-                    if (valor == true) {
-                        System.out.println("El fichero se exporto con exito");
-                    } else {
-                        System.err.println("El fichero no se pudo exportar");
-                    }
+                    modelo.exportarRecetario(respuesta);
+//                    if (valor == true) {
+//                        System.out.println("El fichero se exporto con exito");
+//                    } else {
+//                        System.err.println("El fichero no se pudo exportar");
+//                    }
 
                     break;
                 case 3:
@@ -59,12 +59,12 @@ public class Menu {
                     respuesta = scanner.nextLine();
                     valor = modelo.obtenerRecetaRecetario(respuesta);
                     if (valor == true) {
-                        valor = modelo.exportarReceta(respuesta, respuesta);
-                        if (valor == true) {
-                            System.out.println("El fichero se exporto con exito");
-                        } else {
-                            System.err.println("El fichero no se pudo exportar");
-                        }
+                       modelo.exportarReceta(respuesta, respuesta);
+//                        if (valor == true) {
+//                            System.out.println("El fichero se exporto con exito");
+//                        } else {
+//                            System.err.println("El fichero no se pudo exportar");
+//                        }
 
                     } else {
                         System.err.println("No se encontro la receta");
@@ -75,12 +75,12 @@ public class Menu {
                     //importo receta
                     System.out.println("Introduce el nombre del fichero sin la extensión de la receta");
                     respuesta = scanner.nextLine();
-                    valor = modelo.importarReceta(respuesta);
-                    if (valor == true) {
-                        System.out.println("El fichero se importo con exito");
-                    } else {
-                        System.err.println("El fichero no se pudo importar");
-                    }
+                    modelo.importarReceta(respuesta);
+//                    if (valor == true) {
+//                        System.out.println("El fichero se importo con exito");
+//                    } else {
+//                        System.err.println("El fichero no se pudo importar");
+//                    }
                     break;
                 case 5:
                     //crear recetario
