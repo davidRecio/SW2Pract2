@@ -90,35 +90,39 @@ public class Modelo {
     protected boolean exportarRecetario(String nombreFichero){
         try {
              CWPort.exportarRecetario(nombreFichero+".xml", recetario,ruta);
+                 return true;
         } catch (Exception e) {
             return false;
         }
-        return true;
+    
     }
  protected boolean exportarReceta(String nombreFichero, String nombreReceta){
         try {
              CWPort.exportarReceta(nombreFichero+".xml", recetario,nombreReceta, ruta);
+              return true;
         } catch (Exception e) {
             return false;
         }
-        return true;
+       
     }
  
     protected boolean importarRecetario(String nombreFichero){
         try {
              recetario=CWPort.importarRecetario(nombreFichero+".xml", ruta);
+              return true;
         } catch (Exception e) {
             return false;
         }
-        return true;
+       
     }
  protected boolean importarReceta(String nombreFichero){
         try {
             receta=CWPort.importarReceta(nombreFichero+".xml", ruta);
+             return true;
         } catch (Exception e) {
             return false;
         }
-        return true;
+       
     }
  //validar XSD
  protected String validarXSD(String nombreFichero) {
