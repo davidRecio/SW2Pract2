@@ -23,18 +23,20 @@ public class Practica2SOAPClienteJava {
     public static void main(String[] args) {
     
         ArrayList<Receta> recetaArrayList = new ArrayList();
-       
+       ControladorWeb_Service controladorWeb_Service = new ControladorWeb_Service();
+        ControladorWeb CWPort = controladorWeb_Service.getControladorWebPort();
+        
         Receta receta = new Receta();
-        ArrayList<String> ingrediente2 = new ArrayList();
+        ArrayList<String> ingrediente = new ArrayList();
         String sCarpAct = System.getProperty("user.dir");
         File carpeta = new File(sCarpAct);
         Recetario recetario = null;
-       
-        
-        ingrediente2.add("Cabra");
-        ingrediente2.add("Camello");
         Ingrediente ing = new Ingrediente();
-        ing.ingrediente = ingrediente2;
+        ing.ingrediente = ingrediente;
+        
+        ingrediente.add("Cabra");
+        ingrediente.add("Camello");
+       
         receta.setIngrediente(ing);
         receta.setDificultad("Facil");
         receta.setNombre("Mejunje");
@@ -46,13 +48,13 @@ public class Practica2SOAPClienteJava {
         String nombreReceta="Mejunje";
         String ruta=carpeta.getPath();
 
-        ControladorWeb_Service controladorWeb_Service = new ControladorWeb_Service();
-        ControladorWeb CWPort = controladorWeb_Service.getControladorWebPort();
-//        if (CWPort.crearReceta("Mejunje", "Facil", ingrediente2, 2.00, recetaArrayList).isEmpty()) {
-//            System.out.println("error en la creacion de receta");
-//        } else {
-//            System.out.println("la creacion de receta es exitosa");
-//        }
+        
+        
+        if (CWPort.crearReceta("Mejunje", "Facil", ingrediente, 2.00, recetaArrayList).isEmpty()) {
+            System.out.println("error en la creacion de receta");
+        } else {
+            System.out.println("la creacion de receta es exitosa");
+        }
 //        recetario= CWPort.crearRecetario("libro1", recetaArrayList, 10.0);
 //        if (recetario.getNombre()==null) {
 //            System.out.println("error en la creacion de recetario");
