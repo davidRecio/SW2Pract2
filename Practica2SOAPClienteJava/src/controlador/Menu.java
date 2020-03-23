@@ -21,9 +21,11 @@ public class Menu {
 
     public void menu() {
         while (opcion != 0) {
+            System.out.println("-------------------------------------------------------------------Menú--------------------------------------------------------------------------------");
             System.out.println("Elige una opcion, pulsa 0 para salir");
-            System.out.println("1= Importar recetario, 2=Exportar recetario, 3=Exportar Receta, 4=Importar Receta, 5= crea el recetario, 6=crea recetas, 7=Lista recetas no asignadas , 8=Lista la información de la receta escogida");
-            System.out.println("9=Listas las recetas del recetario, 10=Valida fichero con XSD ");
+            System.out.println("1= Importar recetario, 2=Exportar recetario, 3=Exportar Receta, 4=Importar Receta,");
+            System.out.println("5= crea el recetario, 6=crea recetas, 7=Lista recetas no asignadas,");
+            System.out.println("8=Lista la información de la receta escogida,9=Listas las recetas del recetario, 10=Valida fichero con XSD ");
             opcion = Integer.parseInt(scanner.nextLine());
             switch (opcion) {
                 case 0:
@@ -212,6 +214,8 @@ public class Menu {
             System.out.println("Su precio es: " + receta.getPrecio());
             return true;
         }
+        
+        }
 
-    }
+    
 }
