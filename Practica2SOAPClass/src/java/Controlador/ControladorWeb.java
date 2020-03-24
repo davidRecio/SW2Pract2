@@ -7,6 +7,7 @@ package Controlador;
 
 import Recetarios.Receta;
 import Recetarios.Recetario;
+import java.io.File;
 import java.util.ArrayList;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
@@ -19,60 +20,105 @@ import javax.jws.WebParam;
  */
 @WebService(serviceName = "ControladorWeb")
 public class ControladorWeb {
-
-    Recetario recetario = new Recetario();
+    private ArrayList<Receta> recetaArrayList = new ArrayList();
+    private Recetario recetario = new Recetario();
     CreadorObjetos co = new CreadorObjetos();
     Modelo modelo = new Modelo();
-    Receta receta = new Receta();
+    private Receta receta = new Receta();
     Marsalling mrs = new Marsalling();
     ValidarXSD vXSD = new ValidarXSD();
+    String sCarpAct = System.getProperty("user.dir");
+    File carpeta = new File(sCarpAct);
+    String ruta = carpeta.getPath();
 
-    // ArrayList<Receta> recetaArrayList = new ArrayList();
-
+    
     /**
      * This is a sample web service operation
      */
-    @WebMethod(operationName = "hello")
-    public String hello(@WebParam(name = "name") String txt) {
-        return "Hello " + txt + " !";
-    }
-
+    //se tienen q manejar desde aqui
+ 
     @WebMethod(operationName = "crearRecetario")
-    public Recetario crearRecetario(@WebParam(name = "nombreRecetario") String nombreRecetario,
+    public boolean crearRecetario(@WebParam(name = "nombreRecetario") String nombreRecetario,
             @WebParam(name = "recetaArrayList") ArrayList<Receta> recetaArrayList,
             @WebParam(name = "precioRecetario") Double precioRecetario) {
 
         recetario = co.crearRecetarioWeb(nombreRecetario, recetaArrayList, precioRecetario);
         if (modelo.listarRecetarioWeb(recetario).equals("No existe el recetario")) {
-            Recetario vacio = new Recetario();
-            return vacio;
+           
+            return false;
         } else {
-            return recetario;
+            return true;
         }
 
     }
 
     @WebMethod(operationName = "crearReceta")
-    public ArrayList<Receta> crearReceta(@WebParam(name = "nombreReceta") String nombreReceta,
+    public boolean crearReceta(@WebParam(name = "nombreReceta") String nombreReceta,
             @WebParam(name = "dificultadReceta") String dificultadReceta,
             @WebParam(name = "ingredientes") ArrayList<String> ingredientes,
-            @WebParam(name = "precioReceta") Double precioReceta,
-            @WebParam(name = "recetaArrayList") ArrayList<Receta> recetaArrayList) {
+            @WebParam(name = "precioReceta") Double precioReceta) {
 
-        receta = co.crearRecetaWeb(nombreReceta, dificultadReceta, ingredientes, precioReceta);
+       receta = co.crearRecetaWeb(nombreReceta, dificultadReceta, ingredientes, precioReceta);
         recetaArrayList.add(receta);
 
         if (modelo.listarRecetaWeb(receta).equals("No existe la receta")) {
-            ArrayList<Receta> vacio = new ArrayList();
-            return vacio;
+           
+            return false;
         } else {
-            return recetaArrayList;
+            return true;
         }
 
     }
 
-    @WebMethod(operationName = "obtenerReceta")
-    public Receta obtenerReceta(@WebParam(name = "nombreReceta") String nombreReceta, @WebParam(name = "recetario") Recetario recetario) {
+ 
+
+    @WebMethod(operationName = "exportarRecetario")
+    public void exportarRecetario(@WebParam(name = "nombreFichero") String nombreFichero) {
+        mrs.crearXMLRecetario(nombreFichero, recetario, ruta);
+
+    }
+
+    @WebMethod(operationName = "importarRecetario")
+    public void importarRecetario(@WebParam(name = "nombreFichero") String nombreFichero) {
+     recetario = mrs.importarRecetario(nombreFichero, ruta);
+ 
+    }
+
+    @WebMethod(operationName = "exportarReceta")
+    public void exportarReceta(@WebParam(name = "nombreFichero") String nombreFichero,
+            @WebParam(name = "nombreReceta") String nombreReceta) {
+        mrs.crearXMLReceta(nombreFichero, modelo.buscarReceta(nombreReceta, recetario), ruta);
+
+    }
+
+    @WebMethod(operationName = "importarReceta")
+    public void importarReceta(@WebParam(name = "nombreFichero") String nombreFichero) {
+         receta = mrs.importarReceta(nombreFichero, ruta);
+      
+    }
+
+    @WebMethod(operationName = "validarXSD")
+    public String validarXSD(@WebParam(name = "nombreFichero") String nombrefichero) {
+        return "¿Es valido el xml con su xsd? " + vXSD.validarXSD(ruta + "/files/xsd/recetario.xsd", ruta + "/files/xml/" + nombrefichero);
+    }
+    //obtener elementos
+    
+       @WebMethod(operationName = "obtenerRecetaSinAsignar")
+    public Receta obtenerRecetaSinAsignar(@WebParam(name = "nombreReceta") String nombreReceta) {
+        Receta resultado = new Receta();
+        
+         for (Receta ele : recetaArrayList) {
+
+            if (ele.getNombre().equals(nombreReceta)) {
+                this.receta = ele;
+                 return resultado;
+            }
+        }
+        resultado = null;
+        return resultado;
+    }
+      @WebMethod(operationName = "obtenerRecetaRecetario")
+     public Receta obtenerRecetaRecetario(@WebParam(name = "nombreReceta") String nombreReceta) {
         Receta resultado = new Receta();
         for (Receta ele : recetario.getRecetas()) {
 
@@ -84,41 +130,33 @@ public class ControladorWeb {
         resultado = null;
         return resultado;
     }
-
-    @WebMethod(operationName = "exportarRecetario")
-    public void exportarRecetario(@WebParam(name = "nombreFichero") String nombreFichero,
-            @WebParam(name = "recetario") Recetario recetario,
-            @WebParam(name = "ruta") String ruta) {
-        mrs.crearXMLRecetario(nombreFichero, recetario, ruta);
-
+//getters y setters
+ @WebMethod(operationName = "obtenerRecetaArrayList")
+    public ArrayList<Receta> obtenerRecetaArrayList() {
+        return recetaArrayList;
     }
-
-    @WebMethod(operationName = "importarRecetario")
-    public Recetario importarRecetario(@WebParam(name = "nombreFichero") String nombreFichero,
-            @WebParam(name = "ruta") String ruta) {
-        Recetario recetario = mrs.importarRecetario(nombreFichero, ruta);
+ @WebMethod(operationName = "crearRecetaArrayList")
+    public void crearRecetaArrayList(@WebParam(name = "recetaArrayList") ArrayList<Receta> recetaArrayList) {
+        this.recetaArrayList = recetaArrayList;
+    }
+ @WebMethod(operationName = "obtenerRecetario")
+    public Recetario obtenerRecetario() {
         return recetario;
     }
-
-    @WebMethod(operationName = "exportarReceta")
-    public void exportarReceta(@WebParam(name = "nombreFichero") String nombreFichero,
-            @WebParam(name = "recetario") Recetario recetario,
-            @WebParam(name = "nombreReceta") String nombreReceta,
-            @WebParam(name = "ruta") String ruta) {
-        mrs.crearXMLReceta(nombreFichero, modelo.buscarReceta(nombreReceta, recetario), ruta);
-
+ @WebMethod(operationName = "crearRecetarioSimple")
+    public void crearRecetarioSimple(@WebParam(name = "recetario")Recetario recetario) {
+        this.recetario = recetario;
     }
-
-    @WebMethod(operationName = "importarReceta")
-    public Receta importarReceta(@WebParam(name = "nombreFichero") String nombreFichero,
-            @WebParam(name = "ruta") String ruta) {
-        Receta receta = mrs.importarReceta(nombreFichero, ruta);
+ @WebMethod(operationName = "obtenerReceta")
+    public Receta obtenerReceta() {
         return receta;
     }
-
-    @WebMethod(operationName = "validarXSD")
-    public String validarXSD(@WebParam(name = "ruta") String ruta,
-        @WebParam(name = "nombreFichero") String nombrefichero) {
-        return "¿Es valido el xml con su xsd? " + vXSD.validarXSD(ruta + "/files/xsd/recetario.xsd", ruta + "/files/xml/" + nombrefichero);
+ @WebMethod(operationName = "crearRecetaSimple")
+    public void crearRecetaSimple(@WebParam(name = "receta")Receta receta) {
+        this.receta = receta;
     }
+
+  
+     
+     
 }
