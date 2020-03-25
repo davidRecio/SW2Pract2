@@ -8,14 +8,6 @@
 
 <xs:element name="addRecetaResponse" type="tns:addRecetaResponse"/>
 
-<xs:element name="crearReceta" type="tns:crearReceta"/>
-
-<xs:element name="crearRecetaArrayList" type="tns:crearRecetaArrayList"/>
-
-<xs:element name="crearRecetaArrayListResponse" type="tns:crearRecetaArrayListResponse"/>
-
-<xs:element name="crearRecetaResponse" type="tns:crearRecetaResponse"/>
-
 <xs:element name="crearRecetaSimple" type="tns:crearRecetaSimple"/>
 
 <xs:element name="crearRecetaSimpleResponse" type="tns:crearRecetaSimpleResponse"/>
@@ -23,10 +15,6 @@
 <xs:element name="crearRecetario" type="tns:crearRecetario"/>
 
 <xs:element name="crearRecetarioResponse" type="tns:crearRecetarioResponse"/>
-
-<xs:element name="crearRecetarioSimple" type="tns:crearRecetarioSimple"/>
-
-<xs:element name="crearRecetarioSimpleResponse" type="tns:crearRecetarioSimpleResponse"/>
 
 <xs:element name="exportarReceta" type="tns:exportarReceta"/>
 
@@ -44,8 +32,6 @@
 
 <xs:element name="importarRecetarioResponse" type="tns:importarRecetarioResponse"/>
 
-<xs:element name="obtenerReceta" type="tns:obtenerReceta"/>
-
 <xs:element name="obtenerRecetaArrayList" type="tns:obtenerRecetaArrayList"/>
 
 <xs:element name="obtenerRecetaArrayListResponse" type="tns:obtenerRecetaArrayListResponse"/>
@@ -53,8 +39,6 @@
 <xs:element name="obtenerRecetaRecetario" type="tns:obtenerRecetaRecetario"/>
 
 <xs:element name="obtenerRecetaRecetarioResponse" type="tns:obtenerRecetaRecetarioResponse"/>
-
-<xs:element name="obtenerRecetaResponse" type="tns:obtenerRecetaResponse"/>
 
 <xs:element name="obtenerRecetaSinAsignar" type="tns:obtenerRecetaSinAsignar"/>
 
@@ -143,21 +127,6 @@
 <xs:sequence/>
 </xs:complexType>
 
-<xs:complexType name="crearReceta">
-<xs:sequence>
-<xs:element name="nombreReceta" type="xs:string" minOccurs="0"/>
-<xs:element name="dificultadReceta" type="xs:string" minOccurs="0"/>
-<xs:element name="ingredientes" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element name="precioReceta" type="xs:double" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="crearRecetaResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="obtenerRecetaArrayList">
 <xs:sequence/>
 </xs:complexType>
@@ -165,16 +134,6 @@
 <xs:complexType name="obtenerRecetaArrayListResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:receta" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="obtenerReceta">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="obtenerRecetaResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:receta" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -252,26 +211,6 @@
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="crearRecetaArrayList">
-<xs:sequence>
-<xs:element name="recetaArrayList" type="tns:receta" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="crearRecetaArrayListResponse">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="crearRecetarioSimple">
-<xs:sequence>
-<xs:element name="recetario" type="tns:recetario" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="crearRecetarioSimpleResponse">
-<xs:sequence/>
 </xs:complexType>
 
 <xs:complexType name="addReceta">

@@ -38,45 +38,32 @@ public class ControladorWeb {
     
 
     
-    /**
-     * This is a sample web service operation
-     */
-    //se tienen q manejar desde aqui
+   
  
     @WebMethod(operationName = "crearRecetario")
     public boolean crearRecetario(@WebParam(name = "nombreRecetario") String nombreRecetario,
             @WebParam(name = "precioRecetario") Double precioRecetario) {
 
         recetario = co.crearRecetarioWeb(nombreRecetario, recetaArrayList, precioRecetario);
-        if (modelo.listarRecetarioWeb(recetario).equals("No existe el recetario")) {
-           
-            return false;
-        } else {
-            return true;
-        }
+        return !modelo.listarRecetarioWeb(recetario).equals("No existe el recetario");
 
     }
 
-    @WebMethod(operationName = "crearReceta")
-    public boolean crearReceta(@WebParam(name = "nombreReceta") String nombreReceta,
-            @WebParam(name = "dificultadReceta") String dificultadReceta,
-            @WebParam(name = "ingredientes") ArrayList<String> ingredientes,
-            @WebParam(name = "precioReceta") Double precioReceta) {
+//    @WebMethod(operationName = "crearReceta")
+//    public boolean crearReceta(@WebParam(name = "nombreReceta") String nombreReceta,
+//            @WebParam(name = "dificultadReceta") String dificultadReceta,
+//            @WebParam(name = "ingredientes") ArrayList<String> ingredientes,
+//            @WebParam(name = "precioReceta") Double precioReceta) {
+//
+//       receta = co.crearRecetaWeb(nombreReceta, dificultadReceta, ingredientes, precioReceta);
+//       System.out.println((receta.getNombre()));
+//        recetaArrayList.add(receta);
+//
+//        return !modelo.listarRecetaWeb(receta).equals("No existe la receta");
+//
+//    }
 
-       receta = co.crearRecetaWeb(nombreReceta, dificultadReceta, ingredientes, precioReceta);
-       System.out.println((receta.getNombre()));
-        recetaArrayList.add(receta);
-
-        if (modelo.listarRecetaWeb(receta).equals("No existe la receta")) {
-           
-            return false;
-        } else {
-            return true;
-        }
-
-    }
-
- 
+ //exportar e importar
 
     @WebMethod(operationName = "exportarRecetario")
     public void exportarRecetario(@WebParam(name = "nombreFichero") String nombreFichero) {
@@ -102,7 +89,7 @@ public class ControladorWeb {
          receta = mrs.importarReceta(nombreFichero, ruta);
       
     }
-
+//validar fichero
     @WebMethod(operationName = "validarXSD")
     public String validarXSD(@WebParam(name = "nombreFichero") String nombrefichero) {
         return "¿Es valido el xml con su xsd? " + vXSD.validarXSD(ruta + "/files/xsd/recetario.xsd", ruta + "/files/xml/" + nombrefichero);
@@ -136,27 +123,32 @@ public class ControladorWeb {
         resultado = null;
         return resultado;
     }
+     
+     
+     
+     
+     
 //getters y setters
  @WebMethod(operationName = "obtenerRecetaArrayList")
     public ArrayList<Receta> obtenerRecetaArrayList() {
         return recetaArrayList;
     }
- @WebMethod(operationName = "crearRecetaArrayList")
-    public void crearRecetaArrayList(@WebParam(name = "recetaArrayList") ArrayList<Receta> recetaArrayList) {
-        this.recetaArrayList = recetaArrayList;
-    }
+// @WebMethod(operationName = "crearRecetaArrayList")
+//    public void crearRecetaArrayList(@WebParam(name = "recetaArrayList") ArrayList<Receta> recetaArrayList) {
+//        this.recetaArrayList = recetaArrayList;
+//    }
  @WebMethod(operationName = "obtenerRecetario")
     public Recetario obtenerRecetario() {
         return recetario;
     }
- @WebMethod(operationName = "crearRecetarioSimple")
-    public void crearRecetarioSimple(@WebParam(name = "recetario")Recetario recetario) {
-        this.recetario = recetario;
-    }
- @WebMethod(operationName = "obtenerReceta")
-    public Receta obtenerReceta() {
-        return receta;
-    }
+// @WebMethod(operationName = "crearRecetarioSimple")
+//    public void crearRecetarioSimple(@WebParam(name = "recetario")Recetario recetario) {
+//        this.recetario = recetario;
+//    }
+// @WebMethod(operationName = "obtenerReceta")
+//    public Receta obtenerReceta() {
+//        return receta;
+//    }
  @WebMethod(operationName = "crearRecetaSimple")
     public void crearRecetaSimple(@WebParam(name = "receta")Receta receta) {
         this.receta = receta;

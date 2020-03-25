@@ -5,7 +5,6 @@ import java.util.Scanner;
 import practica2soapclientejava.Receta;
 import practica2soapclientejava.Recetario;
 
-
 /**
  *
  * @author david
@@ -13,12 +12,9 @@ import practica2soapclientejava.Recetario;
 public class Menu {
 
     private Scanner scanner = new Scanner(System.in);
-   
     private Integer opcion = -1;
     private Modelo modelo = new Modelo();
-    private String respuesta,respuesta2,respuesta3,respuesta4;
-    private Receta receta= null;
-    private boolean valor;
+    private String respuesta, respuesta2, respuesta4;
 
     public void menu() {
         modelo.start();
@@ -37,32 +33,21 @@ public class Menu {
                     // Importar recetario
                     System.out.println("Introduce el nombre del fichero sin la extensión del recetario");
                     respuesta = scanner.nextLine();
-                     modelo.importarRecetario(respuesta);
-//                    if (valor == true) {
-//                        System.out.println("El fichero se importo con exito");
-//                    } else {
-//                        System.err.println("El fichero no se pudo importar");
-//                    }
+                    modelo.importarRecetario(respuesta);
                     break;
                 case 2:
                     //Exportar recetario
                     System.out.println("Introduce el nombre del fichero sin la extensión del recetario");
                     respuesta = scanner.nextLine();
                     modelo.exportarRecetario(respuesta);
-//                    if (valor == true) {
-//                        System.out.println("El fichero se exporto con exito");
-//                    } else {
-//                        System.err.println("El fichero no se pudo exportar");
-//                    }
-
                     break;
                 case 3:
                     //exportar receta
                     System.out.println("En esta opcion creará el nombre del xml de la receta.");
                     System.out.println("Introduce el nombre de la receta a exportar");
                     respuesta = scanner.nextLine();
-                    
-                       modelo.exportarReceta(respuesta+".xml", respuesta);
+
+                    modelo.exportarReceta(respuesta + ".xml", respuesta);
                     break;
                 case 4:
                     //importo receta
@@ -77,8 +62,8 @@ public class Menu {
                     respuesta = scanner.nextLine();
                     System.out.println("Introduce el precio del recetario");
                     respuesta2 = scanner.nextLine();
-                    valor = modelo.crearRecetario(respuesta, Double.parseDouble(respuesta2));
-                     if (valor == true) {
+
+                    if (modelo.crearRecetario(respuesta, Double.parseDouble(respuesta2)) == true) {
                         System.out.println("El recetario se creo con exito");
                     } else {
                         System.err.println("El fichero no se pudo crear ya que no creaste o importaste previamente recetas");
@@ -91,46 +76,47 @@ public class Menu {
                     respuesta = scanner.nextLine();
                     System.out.println("Introduce la dificultad de la receta");
                     respuesta2 = scanner.nextLine();
-                   
+
                     System.out.println("Introduce el precio de la receta");
                     respuesta4 = scanner.nextLine();
-                     modelo.crearReceta(respuesta, respuesta2,  pedirIngredientes(), Double.parseDouble(respuesta4));
-                    
+                    modelo.crearReceta(respuesta, respuesta2, pedirIngredientes(), Double.parseDouble(respuesta4));
+
                     break;
                 case 7:
                     // Listar recetas
-                    valor= listarRecetas(modelo.obtenerRecetaArrayList());
-                      if (valor == false) {
+                    if (listarRecetas(modelo.obtenerRecetaArrayList()) == false) {
                         System.err.println("No existen recetas");
                     }
-               
+
                     break;
-                    case 8:
+                case 8:
                     // Lista la receta escogida
-                        System.out.println("Introduce el nombre de la receta");
+                    System.out.println("Introduce el nombre de la receta");
                     respuesta = scanner.nextLine();
-                    receta=modelo.obtenerRecetaRecetario(respuesta);
-                    //valor= listarReceta();
-                      if (receta == null) {
-                        receta=modelo.obtenerReceta(respuesta);
-                          if (receta == null) {
-                              System.err.println("No se encuentra la receta: "+respuesta);
+                    try {
+                        listarReceta(modelo.obtenerRecetaRecetario(respuesta));
+                    } catch (Exception e) {
+                        
+                         System.err.println("No existe la receta " + respuesta+" en el recetario");
+                         
+                         try {
+                             modelo.obtenerReceta(respuesta).getNombre();
+                        } catch (Exception a) {
+                              System.err.println("No existe la receta " + respuesta+" en ningun lado");
+                        }
                           
-                          }
-                    }else{
-                      
-                          listarReceta(receta);
-                      }
-               
+                    }
+                  
+                       
+                    
                     break;
                 case 9:
                     //listas las recetas del recetario
-                     valor = listarRecetasRecetario(modelo.obtenerRecetario());                   
-                    if (valor == false) {
-                        System.err.println("No se cargo el recetario");
-                    } 
-                    break;
 
+                    if (listarRecetasRecetario(modelo.obtenerRecetario()) == false) {
+                        System.err.println("No se cargo el recetario");
+                    }
+                    break;
 
                 case 10:
                     // validar XSD
@@ -143,10 +129,11 @@ public class Menu {
 
             }
         }
-        
+
     }
+
     private ArrayList pedirIngredientes() {
-          ArrayList<String> ingredientes = new ArrayList();
+        ArrayList<String> ingredientes = new ArrayList();
         System.out.println("Introduce los ingredientes, para finalizar introduce como ultimo ingrediente un 0");
         while (respuesta.equals("0") != true) {
             respuesta = scanner.nextLine();
@@ -158,7 +145,8 @@ public class Menu {
         }
         return ingredientes;
     }
-        private boolean listarRecetas(ArrayList<Receta> recetasArrayList) {
+
+    private boolean listarRecetas(ArrayList<Receta> recetasArrayList) {
         if (recetasArrayList.isEmpty() == true) {
             return false;
         } else {
@@ -170,6 +158,7 @@ public class Menu {
         }
 
     }
+
     private boolean listarRecetasRecetario(Recetario recetario) {
         if (recetario == null) {
             return false;
@@ -182,12 +171,13 @@ public class Menu {
         }
 
     }
-     private boolean listarReceta(Receta receta) {
-        if (receta == null) {
+
+    private boolean listarReceta(Receta receta) {
+        if (receta.getNombre() == null) {
             return false;
         } else {
-            System.out.println("Su nombre es: "+receta.getNombre());
-            System.out.println("La dificultad es: "+receta.getDificultad());
+            System.out.println("Su nombre es: " + receta.getNombre());
+            System.out.println("La dificultad es: " + receta.getDificultad());
             System.out.println("tiene los siguientes ingredientes: ");
             for (String ele : receta.getIngrediente().getIngrediente()) {
                 System.out.println(ele);
@@ -195,8 +185,7 @@ public class Menu {
             System.out.println("Su precio es: " + receta.getPrecio());
             return true;
         }
-        
-        }
 
-    
+    }
+
 }

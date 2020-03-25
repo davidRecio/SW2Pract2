@@ -5,12 +5,9 @@
  */
 package controlador;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 import practica2soapclientejava.ControladorWeb;
 import practica2soapclientejava.ControladorWeb_Service;
-
 import practica2soapclientejava.Receta;
 import practica2soapclientejava.Receta.Ingrediente;
 import practica2soapclientejava.Recetario;
@@ -24,90 +21,90 @@ public class Modelo {
     ControladorWeb_Service controladorWeb_Service = new ControladorWeb_Service();
     ControladorWeb CWPort = controladorWeb_Service.getControladorWebPort();
 
+//Crear objetos
+    protected void crearReceta(String Nombre, String Dificultad, ArrayList<String> ingredientes, Double Precio) {
 
-    protected void crearReceta(String Nombre, String Dificultad,ArrayList<String> ingredientes, Double Precio) {
-      
-         CWPort.crearRecetaSimple(crearRecetaWeb(Nombre,Dificultad,ingredientes,Precio));
-         CWPort.addReceta();
-         
+        CWPort.crearRecetaSimple(crearRecetaWeb(Nombre, Dificultad, ingredientes, Precio));
+        CWPort.addReceta();
+
     }
 
     protected boolean crearRecetario(String NombreRecetario,
             Double precioRecetario) {
 
         return CWPort.crearRecetario(NombreRecetario, precioRecetario);
-       
+
     }
+//obtener objetos
 
     protected Receta obtenerRecetaRecetario(String nombreReceta) {
 
         //ing.ingrediente = ingrediente;
-       return CWPort.obtenerRecetaRecetario(nombreReceta);
-      
-     
+        return CWPort.obtenerRecetaRecetario(nombreReceta);
+
     }
 
     protected Receta obtenerReceta(String nombreReceta) {
         return CWPort.obtenerRecetaSinAsignar(nombreReceta);
         //ing.ingrediente = ingrediente;
-      
 
     }
 
+    protected Recetario obtenerRecetario() {
+
+        return CWPort.obtenerRecetario();
+
+    }
+
+    protected ArrayList<Receta> obtenerRecetaArrayList() {
+
+        return (ArrayList) CWPort.obtenerRecetaArrayList();
+
+    }
 ////exportar e importar     
-    protected void exportarRecetario(String nombreFichero) { 
-            CWPort.exportarRecetario(nombreFichero + ".xml");
+
+    protected void exportarRecetario(String nombreFichero) {
+        CWPort.exportarRecetario(nombreFichero + ".xml");
     }
 
     protected void exportarReceta(String nombreFichero, String nombreReceta) {
-        
-            CWPort.exportarReceta(nombreFichero, nombreReceta);
-       
+
+        CWPort.exportarReceta(nombreFichero, nombreReceta);
+
     }
 
     protected void importarRecetario(String nombreFichero) {
-    
-           CWPort.importarRecetario(nombreFichero+ ".xml");
-        
+
+        CWPort.importarRecetario(nombreFichero + ".xml");
+
     }
 
     protected void importarReceta(String nombreFichero) {
-      
-             CWPort.importarReceta(nombreFichero + ".xml");
-        
+
+        CWPort.importarReceta(nombreFichero + ".xml");
 
     }
-protected Recetario obtenerRecetario() {
-      
-             
-       return CWPort.obtenerRecetario();
 
-    }
-  
-protected ArrayList<Receta> obtenerRecetaArrayList() {
-      
-             
-       return (ArrayList)CWPort.obtenerRecetaArrayList();
-
-    }
     //validar XSD
     protected String validarXSD(String nombreFichero) {
-        return CWPort.validarXSD( nombreFichero+".xml");
+        return CWPort.validarXSD(nombreFichero + ".xml");
     }
 //crea los ficheros
 
     void start() {
-       CWPort.start();
+        CWPort.start();
     }
+//crea estructura de la receta
 
-    protected Receta crearRecetaWeb(String Nombre, String Dificultad,ArrayList<String> ingredientes, Double Precio ) {
+    protected Receta crearRecetaWeb(String Nombre, String Dificultad, ArrayList<String> ingredientes, Double Precio) {
         Receta receta = new Receta();
         Ingrediente ing = new Ingrediente();
-       ing.getIngrediente().addAll(ingredientes);
+        ing.getIngrediente().addAll(ingredientes);
         receta.setNombre(Nombre);
         receta.setDificultad(Dificultad);
         receta.setIngrediente(ing);
         receta.setPrecio(Precio);
+        System.out.println(receta.getNombre());
         return receta;
     }
 

@@ -16,23 +16,11 @@
 <message name="addRecetaResponse">
 <part name="parameters" element="tns:addRecetaResponse"/>
 </message>
-<message name="crearReceta">
-<part name="parameters" element="tns:crearReceta"/>
-</message>
-<message name="crearRecetaResponse">
-<part name="parameters" element="tns:crearRecetaResponse"/>
-</message>
 <message name="importarReceta">
 <part name="parameters" element="tns:importarReceta"/>
 </message>
 <message name="importarRecetaResponse">
 <part name="parameters" element="tns:importarRecetaResponse"/>
-</message>
-<message name="obtenerReceta">
-<part name="parameters" element="tns:obtenerReceta"/>
-</message>
-<message name="obtenerRecetaResponse">
-<part name="parameters" element="tns:obtenerRecetaResponse"/>
 </message>
 <message name="exportarReceta">
 <part name="parameters" element="tns:exportarReceta"/>
@@ -82,23 +70,11 @@
 <message name="obtenerRecetaRecetarioResponse">
 <part name="parameters" element="tns:obtenerRecetaRecetarioResponse"/>
 </message>
-<message name="crearRecetaArrayList">
-<part name="parameters" element="tns:crearRecetaArrayList"/>
-</message>
-<message name="crearRecetaArrayListResponse">
-<part name="parameters" element="tns:crearRecetaArrayListResponse"/>
-</message>
 <message name="importarRecetario">
 <part name="parameters" element="tns:importarRecetario"/>
 </message>
 <message name="importarRecetarioResponse">
 <part name="parameters" element="tns:importarRecetarioResponse"/>
-</message>
-<message name="crearRecetarioSimple">
-<part name="parameters" element="tns:crearRecetarioSimple"/>
-</message>
-<message name="crearRecetarioSimpleResponse">
-<part name="parameters" element="tns:crearRecetarioSimpleResponse"/>
 </message>
 <message name="obtenerRecetaSinAsignar">
 <part name="parameters" element="tns:obtenerRecetaSinAsignar"/>
@@ -115,17 +91,9 @@
 <input wsam:Action="http://Controlador/ControladorWeb/addRecetaRequest" message="tns:addReceta"/>
 <output wsam:Action="http://Controlador/ControladorWeb/addRecetaResponse" message="tns:addRecetaResponse"/>
 </operation>
-<operation name="crearReceta">
-<input wsam:Action="http://Controlador/ControladorWeb/crearRecetaRequest" message="tns:crearReceta"/>
-<output wsam:Action="http://Controlador/ControladorWeb/crearRecetaResponse" message="tns:crearRecetaResponse"/>
-</operation>
 <operation name="importarReceta">
 <input wsam:Action="http://Controlador/ControladorWeb/importarRecetaRequest" message="tns:importarReceta"/>
 <output wsam:Action="http://Controlador/ControladorWeb/importarRecetaResponse" message="tns:importarRecetaResponse"/>
-</operation>
-<operation name="obtenerReceta">
-<input wsam:Action="http://Controlador/ControladorWeb/obtenerRecetaRequest" message="tns:obtenerReceta"/>
-<output wsam:Action="http://Controlador/ControladorWeb/obtenerRecetaResponse" message="tns:obtenerRecetaResponse"/>
 </operation>
 <operation name="exportarReceta">
 <input wsam:Action="http://Controlador/ControladorWeb/exportarRecetaRequest" message="tns:exportarReceta"/>
@@ -159,17 +127,9 @@
 <input wsam:Action="http://Controlador/ControladorWeb/obtenerRecetaRecetarioRequest" message="tns:obtenerRecetaRecetario"/>
 <output wsam:Action="http://Controlador/ControladorWeb/obtenerRecetaRecetarioResponse" message="tns:obtenerRecetaRecetarioResponse"/>
 </operation>
-<operation name="crearRecetaArrayList">
-<input wsam:Action="http://Controlador/ControladorWeb/crearRecetaArrayListRequest" message="tns:crearRecetaArrayList"/>
-<output wsam:Action="http://Controlador/ControladorWeb/crearRecetaArrayListResponse" message="tns:crearRecetaArrayListResponse"/>
-</operation>
 <operation name="importarRecetario">
 <input wsam:Action="http://Controlador/ControladorWeb/importarRecetarioRequest" message="tns:importarRecetario"/>
 <output wsam:Action="http://Controlador/ControladorWeb/importarRecetarioResponse" message="tns:importarRecetarioResponse"/>
-</operation>
-<operation name="crearRecetarioSimple">
-<input wsam:Action="http://Controlador/ControladorWeb/crearRecetarioSimpleRequest" message="tns:crearRecetarioSimple"/>
-<output wsam:Action="http://Controlador/ControladorWeb/crearRecetarioSimpleResponse" message="tns:crearRecetarioSimpleResponse"/>
 </operation>
 <operation name="obtenerRecetaSinAsignar">
 <input wsam:Action="http://Controlador/ControladorWeb/obtenerRecetaSinAsignarRequest" message="tns:obtenerRecetaSinAsignar"/>
@@ -196,25 +156,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="crearReceta">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="importarReceta">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="obtenerReceta">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -295,25 +237,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="crearRecetaArrayList">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="importarRecetario">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="crearRecetarioSimple">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
