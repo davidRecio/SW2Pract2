@@ -19,16 +19,9 @@ import practica2soapclientejava.Recetario;
  */
 public class Modelo {
 
-    private ArrayList<Receta> recetaArrayList = new ArrayList();
     ControladorWeb_Service controladorWeb_Service = new ControladorWeb_Service();
     ControladorWeb CWPort = controladorWeb_Service.getControladorWebPort();
-    private Receta receta = null;
-    ArrayList<String> ArrayIngrediente = new ArrayList();
-    String sCarpAct = System.getProperty("user.dir");
-    File carpeta = new File(sCarpAct);
-    private Recetario recetario = null;
-    Receta.Ingrediente ing = new Receta.Ingrediente();
-    String ruta = carpeta.getPath();
+
 
     protected boolean crearReceta(String NombreReceta,
             String dificultadReceta,
@@ -36,135 +29,79 @@ public class Modelo {
             Double precioReceta) {
 
         //ing.ingrediente = ingrediente;
-        recetaArrayList = (ArrayList) CWPort.crearReceta(NombreReceta, dificultadReceta, ArrayIngrediente, precioReceta, recetaArrayList);
-        if (recetaArrayList.isEmpty()) {
-            //System.out.println("error en la creacion de receta");
-            return false;
-        } else {
-            //System.out.println("la creacion de receta es exitosa");
-            return true;
-        }
+        return CWPort.crearReceta(NombreReceta, dificultadReceta, ArrayIngrediente, precioReceta);
+        
 
     }
 
     protected boolean crearRecetario(String NombreRecetario,
             Double precioRecetario) {
 
-        //ing.ingrediente = ingrediente;
-        recetario = CWPort.crearRecetario(NombreRecetario, recetaArrayList, precioRecetario);
-        if (recetaArrayList.isEmpty()) {
-            //System.out.println("error en la creacion de receta");
-            return false;
-        } else {
-            //System.out.println("la creacion de receta es exitosa");
-            return true;
-        }
+        return CWPort.crearRecetario(NombreRecetario, CWPort.obtenerRecetaArrayList(), precioRecetario);
+       
     }
 
-    protected boolean obtenerRecetaRecetario(String nombreReceta) {
+    protected Receta obtenerRecetaRecetario(String nombreReceta) {
 
         //ing.ingrediente = ingrediente;
-        receta = CWPort.obtenerReceta(nombreReceta, recetario);
-        if (receta == null) {
-            //System.out.println("error en la creacion de receta");
-            return false;
-        } else {
-            //System.out.println("la creacion de receta es exitosa");
-            return true;
-        }
+       return CWPort.obtenerRecetaRecetario(nombreReceta);
+      
+     
     }
 
-    protected boolean obtenerReceta(String nombreReceta) {
-
+    protected Receta obtenerReceta(String nombreReceta) {
+        return CWPort.obtenerRecetaSinAsignar(nombreReceta);
         //ing.ingrediente = ingrediente;
-        for (Receta receta : recetaArrayList) {
-
-            if (receta.getNombre().equals(nombreReceta)) {
-                this.receta = receta;
-                return true;
-            }
-        }
-        return false;
+      
 
     }
 
 ////exportar e importar     
-    protected void exportarRecetario(String nombreFichero) {
-        File file = new File(ruta + "/files/xml/" + nombreFichero);
-        if (!file.exists()) {
-            CWPort.exportarRecetario(nombreFichero + ".xml", recetario, ruta);
-
-        } else {
-            System.out.println("Fichero sobrescrito");
-        }
+    protected void exportarRecetario(String nombreFichero) { 
+            CWPort.exportarRecetario(nombreFichero + ".xml");
     }
 
     protected void exportarReceta(String nombreFichero, String nombreReceta) {
-        File file = new File(ruta + "/files/xml/" + nombreFichero);
-        if (!file.exists()) {
-            CWPort.exportarReceta(nombreFichero + ".xml", recetario, nombreReceta, ruta);
-        } else {
-            System.out.println("Fichero sobrescrito");
-        }
+        
+            CWPort.exportarReceta(nombreFichero, nombreReceta);
+       
     }
 
     protected void importarRecetario(String nombreFichero) {
-        File file = new File(ruta + "/files/xml/" + nombreFichero);
-        if (!file.exists()) {
-            System.err.println("No existe el fichero");
-        } else {
-            recetario = CWPort.importarRecetario(nombreFichero + ".xml", ruta);
-        }
+    
+           CWPort.importarRecetario(nombreFichero+ ".xml");
+        
     }
 
     protected void importarReceta(String nombreFichero) {
-        File file = new File(ruta + "/files/xml/" + nombreFichero);
-        if (!file.exists()) {
-            System.err.println("No existe el fichero");
-        } else {
-            receta = CWPort.importarReceta(nombreFichero + ".xml", ruta);
-        }
+      
+             CWPort.importarReceta(nombreFichero + ".xml");
+        
 
     }
+protected Recetario obtenerRecetario() {
+      
+             
+       return CWPort.obtenerRecetario();
 
-    //ver que esta el fichero
-
-    private void comprobarFichero(File fichero) {
-        if (!fichero.exists()) {
-        } else {
-            fichero.delete();
-            System.out.println("El archivo fue sobrescrito.");
-        }
     }
+  
+protected ArrayList<Receta> obtenerRecetaArrayList() {
+      
+             
+       return (ArrayList)CWPort.obtenerRecetaArrayList();
 
+    }
     //validar XSD
     protected String validarXSD(String nombreFichero) {
-        return CWPort.validarXSD(ruta, nombreFichero);
+        return CWPort.validarXSD( nombreFichero);
     }
 //getter and setters
 
-    public Receta getReceta() {
-        return receta;
+    void start() {
+       CWPort.start();
     }
 
-    public void setReceta(Receta receta) {
-        this.receta = receta;
-    }
-
-    public Recetario getRecetario() {
-        return recetario;
-    }
-
-    public void setRecetario(Recetario recetario) {
-        this.recetario = recetario;
-    }
-
-    public ArrayList<Receta> getRecetaArrayList() {
-        return recetaArrayList;
-    }
-
-    public void setRecetaArrayList(ArrayList<Receta> recetaArrayList) {
-        this.recetaArrayList = recetaArrayList;
-    }
+   
 
 }

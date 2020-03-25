@@ -6,9 +6,7 @@
 package practica2soapclientejava;
 
 import controlador.Menu;
-import java.io.File;
-import java.util.ArrayList;
-import practica2soapclientejava.Receta.Ingrediente;
+
 
 
 
@@ -17,7 +15,7 @@ import practica2soapclientejava.Receta.Ingrediente;
  * @author david
  */
 public class Practica2SOAPClienteJava {
-
+//C:\Users\david\AppData\Roaming\NetBeans\8.0.2\config\GF_4.1\domain1\config\files\xml\
     /**
      * @param args the command line arguments
      */

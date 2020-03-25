@@ -19,6 +19,9 @@ public class Controlador {
     ArrayList<Receta> recetaArrayList = new ArrayList();
     Scanner scanner = new Scanner(System.in);
      Receta receta;
+    String sCarpAct = System.getProperty("user.dir");
+    File carpeta = new File(sCarpAct);
+    String ruta = carpeta.getPath();
      Recetario recetario = new Recetario();
      
     public void exportarRecetario(String nombreFichero, Recetario recetario, String ruta){
