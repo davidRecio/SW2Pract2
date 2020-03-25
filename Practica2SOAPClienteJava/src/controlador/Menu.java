@@ -13,7 +13,7 @@ import practica2soapclientejava.Recetario;
 public class Menu {
 
     private Scanner scanner = new Scanner(System.in);
-    private ArrayList<String> ingredientes = new ArrayList();
+   
     private Integer opcion = -1;
     private Modelo modelo = new Modelo();
     private String respuesta,respuesta2,respuesta3,respuesta4;
@@ -62,7 +62,7 @@ public class Menu {
                     System.out.println("Introduce el nombre de la receta a exportar");
                     respuesta = scanner.nextLine();
                     
-                       modelo.exportarReceta(respuesta, respuesta);
+                       modelo.exportarReceta(respuesta+".xml", respuesta);
                     break;
                 case 4:
                     //importo receta
@@ -91,17 +91,11 @@ public class Menu {
                     respuesta = scanner.nextLine();
                     System.out.println("Introduce la dificultad de la receta");
                     respuesta2 = scanner.nextLine();
-                    pedirIngredientes();
+                   
                     System.out.println("Introduce el precio de la receta");
                     respuesta4 = scanner.nextLine();
-                    valor = modelo.crearReceta(respuesta, respuesta2, null, Double.parseDouble(respuesta4));
+                     modelo.crearReceta(respuesta, respuesta2,  pedirIngredientes(), Double.parseDouble(respuesta4));
                     
-                    if (valor == true) {
-                        System.out.println("La receta se creo con exito");
-                    } else {
-                        System.err.println("La receta no se pudo crear");
-                    }
-
                     break;
                 case 7:
                     // Listar recetas
@@ -151,8 +145,8 @@ public class Menu {
         }
         
     }
-    private void pedirIngredientes() {
-     
+    private ArrayList pedirIngredientes() {
+          ArrayList<String> ingredientes = new ArrayList();
         System.out.println("Introduce los ingredientes, para finalizar introduce como ultimo ingrediente un 0");
         while (respuesta.equals("0") != true) {
             respuesta = scanner.nextLine();
@@ -162,6 +156,7 @@ public class Menu {
             }
 
         }
+        return ingredientes;
     }
         private boolean listarRecetas(ArrayList<Receta> recetasArrayList) {
         if (recetasArrayList.isEmpty() == true) {

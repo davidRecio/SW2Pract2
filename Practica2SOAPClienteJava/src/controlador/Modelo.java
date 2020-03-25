@@ -7,10 +7,12 @@ package controlador;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import practica2soapclientejava.ControladorWeb;
 import practica2soapclientejava.ControladorWeb_Service;
 
 import practica2soapclientejava.Receta;
+import practica2soapclientejava.Receta.Ingrediente;
 import practica2soapclientejava.Recetario;
 
 /**
@@ -23,21 +25,17 @@ public class Modelo {
     ControladorWeb CWPort = controladorWeb_Service.getControladorWebPort();
 
 
-    protected boolean crearReceta(String NombreReceta,
-            String dificultadReceta,
-            ArrayList<String> ArrayIngrediente,
-            Double precioReceta) {
-
-        //ing.ingrediente = ingrediente;
-        return CWPort.crearReceta(NombreReceta, dificultadReceta, ArrayIngrediente, precioReceta);
-        
-
+    protected void crearReceta(String Nombre, String Dificultad,ArrayList<String> ingredientes, Double Precio) {
+      
+         CWPort.crearRecetaSimple(crearRecetaWeb(Nombre,Dificultad,ingredientes,Precio));
+         CWPort.addReceta();
+         
     }
 
     protected boolean crearRecetario(String NombreRecetario,
             Double precioRecetario) {
 
-        return CWPort.crearRecetario(NombreRecetario, CWPort.obtenerRecetaArrayList(), precioRecetario);
+        return CWPort.crearRecetario(NombreRecetario, precioRecetario);
        
     }
 
@@ -94,14 +92,23 @@ protected ArrayList<Receta> obtenerRecetaArrayList() {
     }
     //validar XSD
     protected String validarXSD(String nombreFichero) {
-        return CWPort.validarXSD( nombreFichero);
+        return CWPort.validarXSD( nombreFichero+".xml");
     }
-//getter and setters
+//crea los ficheros
 
     void start() {
        CWPort.start();
     }
 
-   
+    protected Receta crearRecetaWeb(String Nombre, String Dificultad,ArrayList<String> ingredientes, Double Precio ) {
+        Receta receta = new Receta();
+        Ingrediente ing = new Ingrediente();
+       ing.getIngrediente().addAll(ingredientes);
+        receta.setNombre(Nombre);
+        receta.setDificultad(Dificultad);
+        receta.setIngrediente(ing);
+        receta.setPrecio(Precio);
+        return receta;
+    }
 
 }

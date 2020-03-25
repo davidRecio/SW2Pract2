@@ -4,6 +4,10 @@
 
 <xs:element name="Recetario" type="tns:recetario"/>
 
+<xs:element name="addReceta" type="tns:addReceta"/>
+
+<xs:element name="addRecetaResponse" type="tns:addRecetaResponse"/>
+
 <xs:element name="crearReceta" type="tns:crearReceta"/>
 
 <xs:element name="crearRecetaArrayList" type="tns:crearRecetaArrayList"/>
@@ -118,7 +122,6 @@
 <xs:complexType name="crearRecetario">
 <xs:sequence>
 <xs:element name="nombreRecetario" type="xs:string" minOccurs="0"/>
-<xs:element name="recetaArrayList" type="tns:receta" minOccurs="0" maxOccurs="unbounded"/>
 <xs:element name="precioRecetario" type="xs:double" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
@@ -219,16 +222,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="importarRecetario">
-<xs:sequence>
-<xs:element name="nombreFichero" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="importarRecetarioResponse">
-<xs:sequence/>
-</xs:complexType>
-
 <xs:complexType name="crearRecetaSimple">
 <xs:sequence>
 <xs:element name="receta" type="tns:receta" minOccurs="0"/>
@@ -239,13 +232,13 @@
 <xs:sequence/>
 </xs:complexType>
 
-<xs:complexType name="crearRecetaArrayList">
+<xs:complexType name="importarRecetario">
 <xs:sequence>
-<xs:element name="recetaArrayList" type="tns:receta" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="nombreFichero" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="crearRecetaArrayListResponse">
+<xs:complexType name="importarRecetarioResponse">
 <xs:sequence/>
 </xs:complexType>
 
@@ -261,6 +254,16 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="crearRecetaArrayList">
+<xs:sequence>
+<xs:element name="recetaArrayList" type="tns:receta" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearRecetaArrayListResponse">
+<xs:sequence/>
+</xs:complexType>
+
 <xs:complexType name="crearRecetarioSimple">
 <xs:sequence>
 <xs:element name="recetario" type="tns:recetario" minOccurs="0"/>
@@ -268,6 +271,14 @@
 </xs:complexType>
 
 <xs:complexType name="crearRecetarioSimpleResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="addReceta">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="addRecetaResponse">
 <xs:sequence/>
 </xs:complexType>
 </xs:schema>

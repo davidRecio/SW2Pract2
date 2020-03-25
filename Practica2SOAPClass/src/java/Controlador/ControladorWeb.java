@@ -45,7 +45,6 @@ public class ControladorWeb {
  
     @WebMethod(operationName = "crearRecetario")
     public boolean crearRecetario(@WebParam(name = "nombreRecetario") String nombreRecetario,
-            @WebParam(name = "recetaArrayList") ArrayList<Receta> recetaArrayList,
             @WebParam(name = "precioRecetario") Double precioRecetario) {
 
         recetario = co.crearRecetarioWeb(nombreRecetario, recetaArrayList, precioRecetario);
@@ -65,6 +64,7 @@ public class ControladorWeb {
             @WebParam(name = "precioReceta") Double precioReceta) {
 
        receta = co.crearRecetaWeb(nombreReceta, dificultadReceta, ingredientes, precioReceta);
+       System.out.println((receta.getNombre()));
         recetaArrayList.add(receta);
 
         if (modelo.listarRecetaWeb(receta).equals("No existe la receta")) {
@@ -161,11 +161,17 @@ public class ControladorWeb {
     public void crearRecetaSimple(@WebParam(name = "receta")Receta receta) {
         this.receta = receta;
     }
+   @WebMethod(operationName = "addReceta")
+    public void addReceta() {
+        recetaArrayList.add(receta);
+    } 
+    
+    //creacion de ficheros necesarios
     @WebMethod(operationName = "start")
     public void start() {
        crearEntorno();
     }
-
+//crea ficheros necesarios
    private void crearEntorno(){
            File directorio = new File(ruta+"/files/xml");
         if (!directorio.exists()) {
@@ -188,7 +194,7 @@ public class ControladorWeb {
    }  
     private void crearXSD() {
 
-        File archivo = new File(ruta+"/files/xsd/validarXSD.xsd");
+        File archivo = new File(ruta+"/files/xsd/recetario.xsd");
         BufferedWriter bw = null;
         if(archivo.exists()!=true) {
           
