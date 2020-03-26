@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import java.util.ArrayList;
@@ -31,8 +26,10 @@ public class Modelo {
 
     protected boolean crearRecetario(String NombreRecetario,
             Double precioRecetario) {
-
-        return CWPort.crearRecetario(NombreRecetario, precioRecetario);
+        ArrayList<Receta> receta = new ArrayList();
+        boolean valor = CWPort.crearRecetario(NombreRecetario, precioRecetario);
+        CWPort.crearRecetaArrayList(receta);
+        return valor;
 
     }
 //obtener objetos
@@ -45,8 +42,18 @@ public class Modelo {
     }
 
     protected Receta obtenerReceta(String nombreReceta) {
-        return CWPort.obtenerRecetaSinAsignar(nombreReceta);
-        //ing.ingrediente = ingrediente;
+        ArrayList<Receta> recetas = obtenerRecetaArrayList();
+
+        Receta resultado = new Receta();
+        for (Receta ele : recetas) {
+
+            if (ele.getNombre().equals(nombreReceta)) {
+                resultado = ele;
+                return resultado;
+            }
+        }
+        resultado = null;
+        return resultado;
 
     }
 

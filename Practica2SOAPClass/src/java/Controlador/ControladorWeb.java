@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controlador;
 
 import Recetarios.Receta;
@@ -18,13 +13,13 @@ import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 
-// Hay que implementar las funciones del controlador 
 /**
  *
  * @author darth
  */
 @WebService(serviceName = "ControladorWeb")
 public class ControladorWeb {
+
     private ArrayList<Receta> recetaArrayList = new ArrayList();
     private Recetario recetario = new Recetario();
     CreadorObjetos co = new CreadorObjetos();
@@ -35,11 +30,7 @@ public class ControladorWeb {
     String sCarpAct = System.getProperty("user.dir");
     File carpeta = new File(sCarpAct);
     String ruta = carpeta.getPath();
-    
 
-    
-   
- 
     @WebMethod(operationName = "crearRecetario")
     public boolean crearRecetario(@WebParam(name = "nombreRecetario") String nombreRecetario,
             @WebParam(name = "precioRecetario") Double precioRecetario) {
@@ -49,22 +40,7 @@ public class ControladorWeb {
 
     }
 
-//    @WebMethod(operationName = "crearReceta")
-//    public boolean crearReceta(@WebParam(name = "nombreReceta") String nombreReceta,
-//            @WebParam(name = "dificultadReceta") String dificultadReceta,
-//            @WebParam(name = "ingredientes") ArrayList<String> ingredientes,
-//            @WebParam(name = "precioReceta") Double precioReceta) {
-//
-//       receta = co.crearRecetaWeb(nombreReceta, dificultadReceta, ingredientes, precioReceta);
-//       System.out.println((receta.getNombre()));
-//        recetaArrayList.add(receta);
-//
-//        return !modelo.listarRecetaWeb(receta).equals("No existe la receta");
-//
-//    }
-
  //exportar e importar
-
     @WebMethod(operationName = "exportarRecetario")
     public void exportarRecetario(@WebParam(name = "nombreFichero") String nombreFichero) {
         mrs.crearXMLRecetario(nombreFichero, recetario, ruta);
@@ -73,8 +49,8 @@ public class ControladorWeb {
 
     @WebMethod(operationName = "importarRecetario")
     public void importarRecetario(@WebParam(name = "nombreFichero") String nombreFichero) {
-     recetario = mrs.importarRecetario(nombreFichero, ruta);
- 
+        recetario = mrs.importarRecetario(nombreFichero, ruta);
+
     }
 
     @WebMethod(operationName = "exportarReceta")
@@ -86,32 +62,19 @@ public class ControladorWeb {
 
     @WebMethod(operationName = "importarReceta")
     public void importarReceta(@WebParam(name = "nombreFichero") String nombreFichero) {
-         receta = mrs.importarReceta(nombreFichero, ruta);
-      
+        receta = mrs.importarReceta(nombreFichero, ruta);
+
     }
 //validar fichero
+
     @WebMethod(operationName = "validarXSD")
     public String validarXSD(@WebParam(name = "nombreFichero") String nombrefichero) {
         return "¿Es valido el xml con su xsd? " + vXSD.validarXSD(ruta + "/files/xsd/recetario.xsd", ruta + "/files/xml/" + nombrefichero);
     }
     //obtener elementos
-    
-       @WebMethod(operationName = "obtenerRecetaSinAsignar")
-    public Receta obtenerRecetaSinAsignar(@WebParam(name = "nombreReceta") String nombreReceta) {
-        Receta resultado = new Receta();
-        
-         for (Receta ele : recetaArrayList) {
 
-            if (ele.getNombre().equals(nombreReceta)) {
-                this.receta = ele;
-                 return resultado;
-            }
-        }
-        resultado = null;
-        return resultado;
-    }
-      @WebMethod(operationName = "obtenerRecetaRecetario")
-     public Receta obtenerRecetaRecetario(@WebParam(name = "nombreReceta") String nombreReceta) {
+    @WebMethod(operationName = "obtenerRecetaRecetario")
+    public Receta obtenerRecetaRecetario(@WebParam(name = "nombreReceta") String nombreReceta) {
         Receta resultado = new Receta();
         for (Receta ele : recetario.getRecetas()) {
 
@@ -123,116 +86,110 @@ public class ControladorWeb {
         resultado = null;
         return resultado;
     }
-     
-     
-     
-     
-     
+
 //getters y setters
- @WebMethod(operationName = "obtenerRecetaArrayList")
+    @WebMethod(operationName = "obtenerRecetaArrayList")
     public ArrayList<Receta> obtenerRecetaArrayList() {
         return recetaArrayList;
     }
-// @WebMethod(operationName = "crearRecetaArrayList")
-//    public void crearRecetaArrayList(@WebParam(name = "recetaArrayList") ArrayList<Receta> recetaArrayList) {
-//        this.recetaArrayList = recetaArrayList;
-//    }
- @WebMethod(operationName = "obtenerRecetario")
+
+    @WebMethod(operationName = "crearRecetaArrayList")
+    public void crearRecetaArrayList(@WebParam(name = "recetaArrayList") ArrayList<Receta> recetaArrayList) {
+        this.recetaArrayList = recetaArrayList;
+    }
+
+    @WebMethod(operationName = "obtenerRecetario")
     public Recetario obtenerRecetario() {
         return recetario;
     }
-// @WebMethod(operationName = "crearRecetarioSimple")
-//    public void crearRecetarioSimple(@WebParam(name = "recetario")Recetario recetario) {
-//        this.recetario = recetario;
-//    }
-// @WebMethod(operationName = "obtenerReceta")
-//    public Receta obtenerReceta() {
-//        return receta;
-//    }
- @WebMethod(operationName = "crearRecetaSimple")
-    public void crearRecetaSimple(@WebParam(name = "receta")Receta receta) {
+
+    @WebMethod(operationName = "crearRecetaSimple")
+    public void crearRecetaSimple(@WebParam(name = "receta") Receta receta) {
         this.receta = receta;
     }
-   @WebMethod(operationName = "addReceta")
+
+    @WebMethod(operationName = "addReceta")
     public void addReceta() {
         recetaArrayList.add(receta);
-    } 
-    
+    }
+
     //creacion de ficheros necesarios
     @WebMethod(operationName = "start")
     public void start() {
-       crearEntorno();
+        crearEntorno();
     }
 //crea ficheros necesarios
-   private void crearEntorno(){
-           File directorio = new File(ruta+"/files/xml");
+
+    private void crearEntorno() {
+        File directorio = new File(ruta + "/files/xml");
         if (!directorio.exists()) {
             if (directorio.mkdirs()) {
                 System.out.println("Directorio creado");
             } else {
                 System.out.println("Error al crear directorio");
             }
-         }
-        directorio = new File(ruta+"/files/xsd");
-         if (!directorio.exists()) {
+        }
+        directorio = new File(ruta + "/files/xsd");
+        if (!directorio.exists()) {
             if (directorio.mkdirs()) {
                 System.out.println("Directorio creado");
             } else {
                 System.out.println("Error al crear directorio");
             }
-         }
-         crearXSD();
-         crearRecetario1();
-   }  
+        }
+        crearXSD();
+        crearRecetario1();
+    }
+
     private void crearXSD() {
 
-        File archivo = new File(ruta+"/files/xsd/recetario.xsd");
+        File archivo = new File(ruta + "/files/xsd/recetario.xsd");
         BufferedWriter bw = null;
-        if(archivo.exists()!=true) {
-          
-       
+        if (archivo.exists() != true) {
+
             try {
                 bw = new BufferedWriter(new FileWriter(archivo));
             } catch (IOException ex) {
                 Logger.getLogger(ControladorWeb.class.getName()).log(Level.SEVERE, null, ex);
             }
             try {
-                bw.write("<xs:schema attributeFormDefault=\"unqualified\" elementFormDefault=\"qualified\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n" +
-                        "  <xs:element name=\"Recetario\">\n" +
-                        "    <xs:complexType>\n" +
-                        "      <xs:sequence>\n" +
-                        "        <xs:element type=\"xs:string\" name=\"nombre\"/>\n" +
-                        "        <xs:element name=\"recetas\">\n" +
-                        "          <xs:complexType>\n" +
-                        "            <xs:sequence>\n" +
-                        "              <xs:element name=\"recetas\" maxOccurs=\"unbounded\" minOccurs=\"0\">\n" +
-                        "                <xs:complexType>\n" +
-                        "                  <xs:sequence>\n" +
-                        "                    <xs:element type=\"xs:string\" name=\"nombre\"/>\n" +
-                        "                    <xs:element name=\"ingrediente\">\n" +
-                        "                      <xs:complexType>\n" +
-                        "                        <xs:sequence>\n" +
-                        "                          <xs:element type=\"xs:string\" name=\"ingrediente\" maxOccurs=\"unbounded\" minOccurs=\"0\"/>\n" +
-                        "                        </xs:sequence>\n" +
-                        "                      </xs:complexType>\n" +
-                        "                    </xs:element>\n" +
-                        "                    <xs:element type=\"xs:float\" name=\"precio\"/>\n" +
-                        "                  </xs:sequence>\n" +
-                        "                  <xs:attribute type=\"xs:string\" name=\"dificultad\" use=\"optional\"/>\n" +
-                        "                </xs:complexType>\n" +
-                        "              </xs:element>\n" +
-                        "            </xs:sequence>\n" +
-                        "          </xs:complexType>\n" +
-                        "        </xs:element>\n" +
-                        "        <xs:element type=\"xs:float\" name=\"precio\"/>\n" +
-                        "      </xs:sequence>\n" +
-                        "    </xs:complexType>\n" +
-                        "  </xs:element>\n" +
-                        "</xs:schema>\n" +
-                        "");        } catch (IOException ex) {
+                bw.write("<xs:schema attributeFormDefault=\"unqualified\" elementFormDefault=\"qualified\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n"
+                        + "  <xs:element name=\"Recetario\">\n"
+                        + "    <xs:complexType>\n"
+                        + "      <xs:sequence>\n"
+                        + "        <xs:element type=\"xs:string\" name=\"nombre\"/>\n"
+                        + "        <xs:element name=\"recetas\">\n"
+                        + "          <xs:complexType>\n"
+                        + "            <xs:sequence>\n"
+                        + "              <xs:element name=\"recetas\" maxOccurs=\"unbounded\" minOccurs=\"0\">\n"
+                        + "                <xs:complexType>\n"
+                        + "                  <xs:sequence>\n"
+                        + "                    <xs:element type=\"xs:string\" name=\"nombre\"/>\n"
+                        + "                    <xs:element name=\"ingrediente\">\n"
+                        + "                      <xs:complexType>\n"
+                        + "                        <xs:sequence>\n"
+                        + "                          <xs:element type=\"xs:string\" name=\"ingrediente\" maxOccurs=\"unbounded\" minOccurs=\"0\"/>\n"
+                        + "                        </xs:sequence>\n"
+                        + "                      </xs:complexType>\n"
+                        + "                    </xs:element>\n"
+                        + "                    <xs:element type=\"xs:float\" name=\"precio\"/>\n"
+                        + "                  </xs:sequence>\n"
+                        + "                  <xs:attribute type=\"xs:string\" name=\"dificultad\" use=\"optional\"/>\n"
+                        + "                </xs:complexType>\n"
+                        + "              </xs:element>\n"
+                        + "            </xs:sequence>\n"
+                        + "          </xs:complexType>\n"
+                        + "        </xs:element>\n"
+                        + "        <xs:element type=\"xs:float\" name=\"precio\"/>\n"
+                        + "      </xs:sequence>\n"
+                        + "    </xs:complexType>\n"
+                        + "  </xs:element>\n"
+                        + "</xs:schema>\n"
+                        + "");
+            } catch (IOException ex) {
                 Logger.getLogger(ControladorWeb.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
+
             try {
                 bw.close();
             } catch (IOException ex) {
@@ -240,13 +197,13 @@ public class ControladorWeb {
             }
         }
     }
+
     private void crearRecetario1() {
 
-        File archivo = new File(ruta+"/files/xml/recetario1.xml");
+        File archivo = new File(ruta + "/files/xml/recetario1.xml");
         BufferedWriter bw = null;
-        if(archivo.exists()!=true) {
-          
-       
+        if (archivo.exists() != true) {
+
             try {
                 bw = new BufferedWriter(new FileWriter(archivo));
             } catch (IOException ex) {
@@ -301,6 +258,5 @@ public class ControladorWeb {
             }
         }
     }
-    
-    }
 
+}

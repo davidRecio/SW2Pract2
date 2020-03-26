@@ -94,28 +94,29 @@ public class Menu {
                     System.out.println("Introduce el nombre de la receta");
                     respuesta = scanner.nextLine();
                     try {
+
                         listarReceta(modelo.obtenerRecetaRecetario(respuesta));
+
                     } catch (Exception e) {
-                        
-                         System.err.println("No existe la receta " + respuesta+" en el recetario");
-                         
-                         try {
-                             modelo.obtenerReceta(respuesta).getNombre();
+
+                        try {
+                            System.out.println("La receta " + respuesta + " esta sin asignar");
+                            listarReceta(modelo.obtenerReceta(respuesta));
                         } catch (Exception a) {
-                              System.err.println("No existe la receta " + respuesta+" en ningun lado");
+                            System.err.println("No existe la receta " + respuesta + " en ningun lado");
                         }
-                          
+
                     }
-                  
-                       
-                    
+
                     break;
                 case 9:
                     //listas las recetas del recetario
-
-                    if (listarRecetasRecetario(modelo.obtenerRecetario()) == false) {
+                    try {
+                        listarRecetasRecetario(modelo.obtenerRecetario());
+                    } catch (Exception e) {
                         System.err.println("No se cargo el recetario");
                     }
+
                     break;
 
                 case 10:
