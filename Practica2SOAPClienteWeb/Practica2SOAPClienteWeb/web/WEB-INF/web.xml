@@ -4,9 +4,17 @@
         <servlet-name>crearReceta</servlet-name>
         <servlet-class>servlets.crearReceta</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>crearRecetarioServlet</servlet-name>
+        <servlet-class>servlets.crearRecetarioServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>crearReceta</servlet-name>
         <url-pattern>/crearReceta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crearRecetarioServlet</servlet-name>
+        <url-pattern>/crearRecetarioServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

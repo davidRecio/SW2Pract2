@@ -42,8 +42,8 @@ public class crearReceta extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String nombre = request.getParameter("nombre"); 
         String dificultad = request.getParameter("dificultad");
-         String ingredientes =request.getParameter("ingredientes");
-         Double precio = Double.parseDouble(request.getParameter("precio"));
+        String ingredientes =request.getParameter("ingredientes");
+        Double precio = Double.parseDouble(request.getParameter("precio"));
          
          Modelo mod = new Modelo();
          
