@@ -62,7 +62,7 @@ public class crearRecetaServlet extends HttpServlet {
         receta.setDificultad(dificultad);
         receta.setPrecio(Double.valueOf(Long.valueOf(precio)));
         
-        //Mal
+        
         SWRPort.addReceta(receta); //nombreReceta,dificultadReceta
             
             /* TODO output your page here. You may use following sample code. */
