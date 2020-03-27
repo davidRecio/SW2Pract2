@@ -73,6 +73,14 @@ public class Modelo {
            SWRPort.importarReceta(converterByte(fichero));
    
     }
+    
+    //validarXSD
+     protected  String  validarXSD(File fichero) throws IOException {
+          return SWRPort.validarXSD(converterByte(fichero));
+   
+    }
+     
+     
     //creador del entorno
     protected void start(){
        SWRPort.start();

@@ -139,7 +139,7 @@
 
 <xs:complexType name="validarXSD">
 <xs:sequence>
-<xs:element name="nombreFichero" type="xs:string" minOccurs="0"/>
+<xs:element name="bytes" type="xs:base64Binary" nillable="true" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

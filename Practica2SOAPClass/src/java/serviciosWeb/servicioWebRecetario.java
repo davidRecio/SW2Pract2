@@ -119,8 +119,9 @@ public class servicioWebRecetario {
     //validar fichero
 
     @WebMethod(operationName = "validarXSD")
-    public String validarXSD(@WebParam(name = "nombreFichero") String nombrefichero) {
-        return "¿Es valido el xml con su xsd? " + vXSD.validarXSD(ruta + "/files/xsd/recetario.xsd", ruta + "/files/xml/" + nombrefichero);
+    public String validarXSD(@WebParam(name = "bytes") byte[] bytes){
+         File file= new File( leerBytes(bytes).getPath());
+        return "¿Es valido el xml con su xsd? " + vXSD.validarXSD(ruta + "/files/xsd/recetario.xsd",file );
     }
 
 

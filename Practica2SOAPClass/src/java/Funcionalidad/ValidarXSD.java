@@ -23,14 +23,14 @@ import org.xml.sax.SAXException;
 public class ValidarXSD {
     
     
-   public boolean validarXSD(String xsdPath, String xmlPath){
+   public boolean validarXSD(String xsdPath, File ficheroXml){
    
         try {
             SchemaFactory factory
                     = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             Schema schema = factory.newSchema(new File(xsdPath));
             Validator validator = (Validator) schema.newValidator();
-            validator.validate(new StreamSource(new File(xmlPath)));
+            validator.validate(new StreamSource(ficheroXml));
 
         } catch (SAXException ex) {
             Logger.getLogger(ValidarXSD.class.getName()).log(Level.SEVERE, null, ex);

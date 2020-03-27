@@ -136,12 +136,19 @@ public class Menu {
 
                     break;
 
-//                case 10:
-//                    // validar XSD
-//                    System.out.println("Introduce el nombre del XML a validar sin extension: ");
-//                    respuesta = scanner.nextLine();
-//                    System.out.println(modelo.validarXSD(respuesta));
-//                    break;
+                case 10:
+                    // validar XSD
+                    System.out.println("Introduce el nombre del XML a validar sin extension: ");
+                    respuesta = scanner.nextLine();
+                     File file3 = new File(ruta + "/files/xml/" + respuesta + ".xml");
+            {
+                try {
+                    System.out.println(modelo.validarXSD(file3));
+                } catch (IOException ex) {
+                    Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+                    break;
                 default:
                     System.out.println("Error, introduzca un numero del cero al 11");
 
