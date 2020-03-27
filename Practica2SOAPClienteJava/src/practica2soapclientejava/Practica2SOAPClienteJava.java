@@ -5,27 +5,21 @@
  */
 package practica2soapclientejava;
 
-import controlador.Menu;
-
-
-
+import Funcionalidad.Menu;
 
 /**
  *
  * @author david
  */
 public class Practica2SOAPClienteJava {
-//C:\Users\david\AppData\Roaming\NetBeans\8.0.2\config\GF_4.1\domain1\config\files\xml\
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-    
-       Menu menu = new Menu();
-       menu.menu();
-
-   
-
+        // TODO code application logic here
+        Menu menu = new Menu();
+        menu.menu();
     }
-
+    
 }

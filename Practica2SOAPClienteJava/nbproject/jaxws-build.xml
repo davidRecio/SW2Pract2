@@ -16,22 +16,22 @@
             <classpath path="${libs.jaxws21.classpath}"/>
         </taskdef>
     </target>
-    <target name="wsimport-client-ControladorWeb" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/ControladorWeb"/>
-        <property name="wsdl-ControladorWeb" location="xml-resources/web-service-references/ControladorWeb/wsdl/localhost_8080/Practica2SOAPClass/ControladorWeb.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/ControladorWeb" destdir="${build.generated.dir}/jax-wsCache/ControladorWeb" wsdl="${wsdl-ControladorWeb}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/Practica2SOAPClass/ControladorWeb?wsdl" xnocompile="true" xendorsed="true" package="practica2soapclientejava">
-            <depends file="${wsdl-ControladorWeb}"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/ControladorWeb"/>
+    <target name="wsimport-client-servicioWebRecetario" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/servicioWebRecetario"/>
+        <property name="wsdl-servicioWebRecetario" location="xml-resources/web-service-references/servicioWebRecetario/wsdl/localhost_8080/Practica2SOAPClass/servicioWebRecetario.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/servicioWebRecetario" destdir="${build.generated.dir}/jax-wsCache/servicioWebRecetario" wsdl="${wsdl-servicioWebRecetario}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/Practica2SOAPClass/servicioWebRecetario?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${wsdl-servicioWebRecetario}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/servicioWebRecetario"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/ControladorWeb">
+            <fileset dir="${build.generated.dir}/jax-wsCache/servicioWebRecetario">
                 <include name="**/*.java"/>
             </fileset>
         </copy>
     </target>
-    <target name="wsimport-client-clean-ControladorWeb" depends="-init-project">
-        <delete dir="${build.generated.dir}/jax-wsCache/ControladorWeb"/>
-        <delete dir="${build.generated.sources.dir}/jax-ws/practica2soapclientejava"/>
+    <target name="wsimport-client-clean-servicioWebRecetario" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/servicioWebRecetario"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/serviciosweb"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-ControladorWeb"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-servicioWebRecetario"/>
 </project>
