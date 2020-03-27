@@ -22,9 +22,10 @@ public class Menu {
     private Integer opcion = -1;
     private Modelo modelo = new Modelo();
     private String respuesta, respuesta2, respuesta4;
-private String sCarpAct = System.getProperty("user.dir");
+    private String sCarpAct = System.getProperty("user.dir");
     private File carpeta = new File(sCarpAct);
     private String ruta = carpeta.getPath();
+
     public void menu() {
         modelo.start();
         while (opcion != 0) {
@@ -42,7 +43,7 @@ private String sCarpAct = System.getProperty("user.dir");
                     // Importar recetario
                     System.out.println("Introduce el nombre del fichero sin la extensión del recetario");
                     respuesta = scanner.nextLine();
-                    File file = new File(ruta+"/files/xml/" + respuesta + ".xml");
+                    File file = new File(ruta + "/files/xml/" + respuesta + ".xml");
                      {
                         try {
                             modelo.importarRecetario(file);
@@ -57,26 +58,39 @@ private String sCarpAct = System.getProperty("user.dir");
                     respuesta = scanner.nextLine();
                      {
                         try {
-                            modelo.leerBytes(modelo.exportarRecetario(respuesta),respuesta);
+                            modelo.leerBytes(modelo.exportarRecetario(respuesta), respuesta);
                         } catch (IOException_Exception ex) {
                             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                     break;
-//                case 3:
-//                    //exportar receta
-//                    System.out.println("En esta opcion creará el nombre del xml de la receta.");
-//                    System.out.println("Introduce el nombre de la receta a exportar");
-//                    respuesta = scanner.nextLine();
-//
-//                    modelo.exportarReceta(respuesta + ".xml", respuesta);
-//                    break;
-//                case 4:
-//                    //importo receta
-//                    System.out.println("Introduce el nombre del fichero sin la extensión de la receta");
-//                    respuesta = scanner.nextLine();
-//                    modelo.importarReceta(respuesta);
-//                    break;
+                case 3:
+                    //exportar receta
+                    System.out.println("En esta opcion creará el nombre del xml de la receta.");
+                    System.out.println("Introduce el nombre de la receta a exportar");
+                    respuesta = scanner.nextLine();
+                     {
+                        try {
+                            modelo.leerBytes(modelo.exportarReceta(respuesta + ".xml", respuesta), respuesta);
+                        } catch (IOException_Exception ex) {
+                            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+
+                    break;
+                case 4:
+                    //importo receta
+                    System.out.println("Introduce el nombre del fichero sin la extensión de la receta");
+                    respuesta = scanner.nextLine();
+                    File file2 = new File(ruta + "/files/xml/" + respuesta + ".xml");
+            {
+                try {
+                    modelo.importarReceta(file2);
+                } catch (IOException ex) {
+                    Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+                    break;
                 case 5:
                     //crear recetario
                     System.out.println("En esta opcion creará el recetario con las recetas introucidas o importadas");

@@ -127,6 +127,16 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="crearRecetario">
+<xs:sequence>
+<xs:element name="recetario" type="tns:recetario" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearRecetarioResponse">
+<xs:sequence/>
+</xs:complexType>
+
 <xs:complexType name="validarXSD">
 <xs:sequence>
 <xs:element name="nombreFichero" type="xs:string" minOccurs="0"/>
@@ -139,19 +149,9 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="crearRecetario">
-<xs:sequence>
-<xs:element name="recetario" type="tns:recetario" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="crearRecetarioResponse">
-<xs:sequence/>
-</xs:complexType>
-
 <xs:complexType name="importarReceta">
 <xs:sequence>
-<xs:element name="nombreFichero" type="xs:string" minOccurs="0"/>
+<xs:element name="bytes" type="xs:base64Binary" nillable="true" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -185,7 +185,9 @@
 </xs:complexType>
 
 <xs:complexType name="exportarRecetaResponse">
-<xs:sequence/>
+<xs:sequence>
+<xs:element name="return" type="xs:base64Binary" nillable="true" minOccurs="0"/>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="obtenerReceta">

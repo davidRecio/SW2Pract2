@@ -90,20 +90,25 @@ public class servicioWebRecetario {
     public void importarRecetario(@WebParam(name = "bytes") byte[] bytes) {
        File file= new File( leerBytes(bytes).getPath());
         recetario = mrs.importarRecetario(file);
+        recetas=recetario.getRecetas();
         file.delete();
 
     }
 
     @WebMethod(operationName = "exportarReceta")
-    public void exportarReceta(@WebParam(name = "nombreFichero") String nombreFichero,
-            @WebParam(name = "nombreReceta") String nombreReceta) {
+    public byte[]  exportarReceta(@WebParam(name = "nombreFichero") String nombreFichero,
+            @WebParam(name = "nombreReceta") String nombreReceta) throws IOException {
         mrs.crearXMLReceta(nombreFichero, obtenerReceta(nombreReceta), ruta);
-
+         File file = new File(ruta+"/files/xml/"+ nombreFichero);
+         return converterByte(file);
     }
 
     @WebMethod(operationName = "importarReceta")
-    public void importarReceta(@WebParam(name = "nombreFichero") String nombreFichero) {
-        addReceta(mrs.importarReceta(nombreFichero, ruta));
+    public void importarReceta(@WebParam(name = "bytes") byte[] bytes) {
+         File file= new File( leerBytes(bytes).getPath());
+         Receta receta=mrs.importarReceta(file);
+        addReceta(receta);
+         file.delete();
 
     }
     
@@ -269,24 +274,27 @@ public class servicioWebRecetario {
       private  byte[] converterByte( File file ) throws FileNotFoundException, IOException {
        
  
-        FileInputStream fis = new FileInputStream(file);
+        FileInputStream fiss = new FileInputStream(file);
         //System.out.println(file.exists() + "!!");
         //InputStream in = resource.openStream();
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        byte[] buf = new byte[1024];
+        ByteArrayOutputStream boss = new ByteArrayOutputStream();
+        byte[] buff = new byte[1024];
         try {
-            for (int readNum; (readNum = fis.read(buf)) != -1;) {
-                bos.write(buf, 0, readNum); //no doubt here is 0
+            for (int readNum; (readNum = fiss.read(buff)) != -1;) {
+                boss.write(buff, 0, readNum); //no doubt here is 0
                 //Writes len bytes from the specified byte array starting at offset off to this byte array output stream.
                 System.out.println("read " + readNum + " bytes,");
             }
+           
         } catch (IOException ex) {
             Logger.getLogger(servicioWebRecetario.class.getName()).log(Level.SEVERE, null, ex);
         }
        
-        byte[] bytes = bos.toByteArray();
-         bos.close();
+        byte[] bytes = boss.toByteArray();
+          boss.close();
+          fiss.close();
          File fileAux=new File(file.getPath());
+         System.err.println(file.getPath());
          fileAux.delete();
         return bytes;
         //below is the different part

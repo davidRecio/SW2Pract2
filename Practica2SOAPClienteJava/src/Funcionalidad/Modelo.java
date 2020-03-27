@@ -65,7 +65,14 @@ public class Modelo {
            SWRPort.importarRecetario(converterByte(fichero));
    
     }
-    
+    protected  byte[]  exportarReceta(String nombreFichero,String nombreReceta) throws IOException_Exception{
+   
+    return SWRPort.exportarReceta(nombreFichero, nombreReceta);
+    }
+    protected  void  importarReceta(File fichero) throws IOException {
+           SWRPort.importarReceta(converterByte(fichero));
+   
+    }
     //creador del entorno
     protected void start(){
        SWRPort.start();

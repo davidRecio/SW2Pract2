@@ -59,11 +59,11 @@ public void crearXMLReceta(String nombreFichero, Receta receta,String ruta) {
      
      }
     }
-public Receta importarReceta(String nombreFichero,String ruta){
+public Receta importarReceta(File file){
     Receta receta= new Receta();
        try {  
    
-        File file = new File(ruta+"/files/xml/" + nombreFichero);  
+       
         JAXBContext jaxbContext = JAXBContext.newInstance(Receta.class);  
    
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();  
@@ -78,9 +78,7 @@ public Receta importarReceta(String nombreFichero,String ruta){
        return receta;
     }  
 public void crearXMLRecetario(String nombreFichero, Recetario recetario,String ruta) {
-     String sCarpAct = System.getProperty("user.dir");
-       File carpeta = new File(sCarpAct);
-       
+    
      
         try {
             FileWriter fichero = null;
