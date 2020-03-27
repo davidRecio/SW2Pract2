@@ -9,7 +9,9 @@ package Funcionalidad;
  *
  * @author david
  */
+import java.io.File;
 import java.util.ArrayList;
+import serviciosweb.IOException_Exception;
 import serviciosweb.Receta.Ingrediente;
 import serviciosweb.Receta;
 import serviciosweb.Recetario;
@@ -22,34 +24,42 @@ public class Modelo {
     
     
     private Recetario recetario = new Recetario();
-
+    //las funcionalidades obtenidas del servicio
+    //tratamiento obj
     protected void crearRecetario(Recetario recetario) {
         SWRPort.crearRecetario(recetario);
-       
-
     }
 
     protected void addReceta(Receta receta) {
       SWRPort.addReceta(receta);
-        
-
     }
 
     protected void rmvReceta(String nombreReceta ) {
         SWRPort.rmvReceta(nombreReceta);
-      //recetario.getRecetas().remove(posicion.intValue());
-
     }
 
     protected Receta obtenerReceta(String nombreReceta) {
      return  SWRPort.obtenerReceta(nombreReceta);
-
     }
 
     protected Recetario obtenerRecetario() {
         return SWRPort.obtenerRecetario();
     }
-//crea los objetos segun sus estructuras
+    
+    
+    //imports y exports
+    
+    protected  byte[]  exportarRecetario(String nombreFichero) throws IOException_Exception{
+    //tiene q dar un file
+    return SWRPort.exportarRecetario(nombreFichero);
+    }
+    
+    //creador del entorno
+    protected void start(){
+       SWRPort.start();
+    }
+    
+    //crea los objetos segun sus estructuras
    protected Recetario crearRecetarioEsructura(String nombreRecetario, Double precio) {
         Recetario recetario = new Recetario();
         recetario.setNombre(nombreRecetario);

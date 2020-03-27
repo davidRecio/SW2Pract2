@@ -11,7 +11,11 @@ import Funcionalidad.Marsalling;
 import Recursos.Receta;
 import Recursos.Recetario;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -76,14 +80,15 @@ public class servicioWebRecetario {
  //exportar e importar
     //el servicio te exporta el xmlen el servidor y luego lo muueve al cliente, port tanto la funcion tiene un return de fichero
     @WebMethod(operationName = "exportarRecetario")
-    public void exportarRecetario(@WebParam(name = "nombreFichero") String nombreFichero) {
+    public  byte[]  exportarRecetario(@WebParam(name = "nombreFichero") String nombreFichero) throws IOException {
         mrs.crearXMLRecetario(nombreFichero, recetario, ruta);
-
+         File file = new File(ruta+"/files/xml/"+ nombreFichero+".xml");
+         return converterByte(file);
     }
 //parametro de entrada que sea unchero
     @WebMethod(operationName = "importarRecetario")
-    public void importarRecetario(@WebParam(name = "nombreFichero") String nombreFichero) {
-        recetario = mrs.importarRecetario(nombreFichero, ruta);
+    public void importarRecetario(@WebParam(name = "fichero") File fichero) {
+        recetario = mrs.importarRecetario(fichero);
 
     }
 
@@ -256,6 +261,36 @@ public class servicioWebRecetario {
                 Logger.getLogger(servicioWebRecetario.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+      public  byte[] converterByte( File file ) throws FileNotFoundException, IOException {
+       
+ 
+        FileInputStream fis = new FileInputStream(file);
+        //System.out.println(file.exists() + "!!");
+        //InputStream in = resource.openStream();
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        byte[] buf = new byte[1024];
+        try {
+            for (int readNum; (readNum = fis.read(buf)) != -1;) {
+                bos.write(buf, 0, readNum); //no doubt here is 0
+                //Writes len bytes from the specified byte array starting at offset off to this byte array output stream.
+                System.out.println("read " + readNum + " bytes,");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(servicioWebRecetario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        byte[] bytes = bos.toByteArray();
+         bos.close();
+         File fileAux=new File(file.getPath().substring(0, file.getPath().length()-4));
+         fileAux.delete();
+        return bytes;
+        //below is the different part
+//        File someFile = new File("java2.pdf");
+//        FileOutputStream fos = new FileOutputStream(someFile);
+//        fos.write(bytes);
+//        fos.flush();
+//        fos.close();
     }
 
 }

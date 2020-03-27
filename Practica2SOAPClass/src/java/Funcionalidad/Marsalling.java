@@ -109,15 +109,15 @@ public void crearXMLRecetario(String nombreFichero, Recetario recetario,String r
             Logger.getLogger(Marsalling.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-public Recetario importarRecetario(String nombreFichero,String ruta){
+public Recetario importarRecetario(File fichero){
     Recetario recetario= new Recetario();
        try {  
    
-        File file = new File(ruta+"/files/xml/" + nombreFichero);  
+     
         JAXBContext jaxbContext = JAXBContext.newInstance(Recetario.class);  
    
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();  
-        recetario = (Recetario) jaxbUnmarshaller.unmarshal(file);  
+        recetario = (Recetario) jaxbUnmarshaller.unmarshal(fichero);  
           
         
         

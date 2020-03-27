@@ -16,17 +16,26 @@
 <message name="exportarRecetarioResponse">
 <part name="parameters" element="tns:exportarRecetarioResponse"/>
 </message>
+<message name="IOException">
+<part name="fault" element="tns:IOException"/>
+</message>
 <message name="importarRecetario">
 <part name="parameters" element="tns:importarRecetario"/>
 </message>
 <message name="importarRecetarioResponse">
 <part name="parameters" element="tns:importarRecetarioResponse"/>
 </message>
-<message name="exportarReceta">
-<part name="parameters" element="tns:exportarReceta"/>
+<message name="importarReceta">
+<part name="parameters" element="tns:importarReceta"/>
 </message>
-<message name="exportarRecetaResponse">
-<part name="parameters" element="tns:exportarRecetaResponse"/>
+<message name="importarRecetaResponse">
+<part name="parameters" element="tns:importarRecetaResponse"/>
+</message>
+<message name="validarXSD">
+<part name="parameters" element="tns:validarXSD"/>
+</message>
+<message name="validarXSDResponse">
+<part name="parameters" element="tns:validarXSDResponse"/>
 </message>
 <message name="obtenerReceta">
 <part name="parameters" element="tns:obtenerReceta"/>
@@ -34,11 +43,20 @@
 <message name="obtenerRecetaResponse">
 <part name="parameters" element="tns:obtenerRecetaResponse"/>
 </message>
-<message name="importarReceta">
-<part name="parameters" element="tns:importarReceta"/>
+<message name="exportarReceta">
+<part name="parameters" element="tns:exportarReceta"/>
 </message>
-<message name="importarRecetaResponse">
-<part name="parameters" element="tns:importarRecetaResponse"/>
+<message name="exportarRecetaResponse">
+<part name="parameters" element="tns:exportarRecetaResponse"/>
+</message>
+<message name="converterByte">
+<part name="parameters" element="tns:converterByte"/>
+</message>
+<message name="converterByteResponse">
+<part name="parameters" element="tns:converterByteResponse"/>
+</message>
+<message name="FileNotFoundException">
+<part name="fault" element="tns:FileNotFoundException"/>
 </message>
 <message name="addReceta">
 <part name="parameters" element="tns:addReceta"/>
@@ -52,23 +70,17 @@
 <message name="rmvRecetaResponse">
 <part name="parameters" element="tns:rmvRecetaResponse"/>
 </message>
-<message name="obtenerRecetario">
-<part name="parameters" element="tns:obtenerRecetario"/>
-</message>
-<message name="obtenerRecetarioResponse">
-<part name="parameters" element="tns:obtenerRecetarioResponse"/>
-</message>
 <message name="crearRecetario">
 <part name="parameters" element="tns:crearRecetario"/>
 </message>
 <message name="crearRecetarioResponse">
 <part name="parameters" element="tns:crearRecetarioResponse"/>
 </message>
-<message name="validarXSD">
-<part name="parameters" element="tns:validarXSD"/>
+<message name="obtenerRecetario">
+<part name="parameters" element="tns:obtenerRecetario"/>
 </message>
-<message name="validarXSDResponse">
-<part name="parameters" element="tns:validarXSDResponse"/>
+<message name="obtenerRecetarioResponse">
+<part name="parameters" element="tns:obtenerRecetarioResponse"/>
 </message>
 <portType name="servicioWebRecetario">
 <operation name="start">
@@ -78,22 +90,33 @@
 <operation name="exportarRecetario">
 <input wsam:Action="http://serviciosWeb/servicioWebRecetario/exportarRecetarioRequest" message="tns:exportarRecetario"/>
 <output wsam:Action="http://serviciosWeb/servicioWebRecetario/exportarRecetarioResponse" message="tns:exportarRecetarioResponse"/>
+<fault message="tns:IOException" name="IOException" wsam:Action="http://serviciosWeb/servicioWebRecetario/exportarRecetario/Fault/IOException"/>
 </operation>
 <operation name="importarRecetario">
 <input wsam:Action="http://serviciosWeb/servicioWebRecetario/importarRecetarioRequest" message="tns:importarRecetario"/>
 <output wsam:Action="http://serviciosWeb/servicioWebRecetario/importarRecetarioResponse" message="tns:importarRecetarioResponse"/>
 </operation>
-<operation name="exportarReceta">
-<input wsam:Action="http://serviciosWeb/servicioWebRecetario/exportarRecetaRequest" message="tns:exportarReceta"/>
-<output wsam:Action="http://serviciosWeb/servicioWebRecetario/exportarRecetaResponse" message="tns:exportarRecetaResponse"/>
+<operation name="importarReceta">
+<input wsam:Action="http://serviciosWeb/servicioWebRecetario/importarRecetaRequest" message="tns:importarReceta"/>
+<output wsam:Action="http://serviciosWeb/servicioWebRecetario/importarRecetaResponse" message="tns:importarRecetaResponse"/>
+</operation>
+<operation name="validarXSD">
+<input wsam:Action="http://serviciosWeb/servicioWebRecetario/validarXSDRequest" message="tns:validarXSD"/>
+<output wsam:Action="http://serviciosWeb/servicioWebRecetario/validarXSDResponse" message="tns:validarXSDResponse"/>
 </operation>
 <operation name="obtenerReceta">
 <input wsam:Action="http://serviciosWeb/servicioWebRecetario/obtenerRecetaRequest" message="tns:obtenerReceta"/>
 <output wsam:Action="http://serviciosWeb/servicioWebRecetario/obtenerRecetaResponse" message="tns:obtenerRecetaResponse"/>
 </operation>
-<operation name="importarReceta">
-<input wsam:Action="http://serviciosWeb/servicioWebRecetario/importarRecetaRequest" message="tns:importarReceta"/>
-<output wsam:Action="http://serviciosWeb/servicioWebRecetario/importarRecetaResponse" message="tns:importarRecetaResponse"/>
+<operation name="exportarReceta">
+<input wsam:Action="http://serviciosWeb/servicioWebRecetario/exportarRecetaRequest" message="tns:exportarReceta"/>
+<output wsam:Action="http://serviciosWeb/servicioWebRecetario/exportarRecetaResponse" message="tns:exportarRecetaResponse"/>
+</operation>
+<operation name="converterByte">
+<input wsam:Action="http://serviciosWeb/servicioWebRecetario/converterByteRequest" message="tns:converterByte"/>
+<output wsam:Action="http://serviciosWeb/servicioWebRecetario/converterByteResponse" message="tns:converterByteResponse"/>
+<fault message="tns:FileNotFoundException" name="FileNotFoundException" wsam:Action="http://serviciosWeb/servicioWebRecetario/converterByte/Fault/FileNotFoundException"/>
+<fault message="tns:IOException" name="IOException" wsam:Action="http://serviciosWeb/servicioWebRecetario/converterByte/Fault/IOException"/>
 </operation>
 <operation name="addReceta">
 <input wsam:Action="http://serviciosWeb/servicioWebRecetario/addRecetaRequest" message="tns:addReceta"/>
@@ -103,17 +126,13 @@
 <input wsam:Action="http://serviciosWeb/servicioWebRecetario/rmvRecetaRequest" message="tns:rmvReceta"/>
 <output wsam:Action="http://serviciosWeb/servicioWebRecetario/rmvRecetaResponse" message="tns:rmvRecetaResponse"/>
 </operation>
-<operation name="obtenerRecetario">
-<input wsam:Action="http://serviciosWeb/servicioWebRecetario/obtenerRecetarioRequest" message="tns:obtenerRecetario"/>
-<output wsam:Action="http://serviciosWeb/servicioWebRecetario/obtenerRecetarioResponse" message="tns:obtenerRecetarioResponse"/>
-</operation>
 <operation name="crearRecetario">
 <input wsam:Action="http://serviciosWeb/servicioWebRecetario/crearRecetarioRequest" message="tns:crearRecetario"/>
 <output wsam:Action="http://serviciosWeb/servicioWebRecetario/crearRecetarioResponse" message="tns:crearRecetarioResponse"/>
 </operation>
-<operation name="validarXSD">
-<input wsam:Action="http://serviciosWeb/servicioWebRecetario/validarXSDRequest" message="tns:validarXSD"/>
-<output wsam:Action="http://serviciosWeb/servicioWebRecetario/validarXSDResponse" message="tns:validarXSDResponse"/>
+<operation name="obtenerRecetario">
+<input wsam:Action="http://serviciosWeb/servicioWebRecetario/obtenerRecetarioRequest" message="tns:obtenerRecetario"/>
+<output wsam:Action="http://serviciosWeb/servicioWebRecetario/obtenerRecetarioResponse" message="tns:obtenerRecetarioResponse"/>
 </operation>
 </portType>
 <binding name="servicioWebRecetarioPortBinding" type="tns:servicioWebRecetario">
@@ -135,6 +154,9 @@
 <output>
 <soap:body use="literal"/>
 </output>
+<fault name="IOException">
+<soap:fault name="IOException" use="literal"/>
+</fault>
 </operation>
 <operation name="importarRecetario">
 <soap:operation soapAction=""/>
@@ -145,7 +167,16 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="exportarReceta">
+<operation name="importarReceta">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="validarXSD">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -163,7 +194,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="importarReceta">
+<operation name="exportarReceta">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -171,6 +202,21 @@
 <output>
 <soap:body use="literal"/>
 </output>
+</operation>
+<operation name="converterByte">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="FileNotFoundException">
+<soap:fault name="FileNotFoundException" use="literal"/>
+</fault>
+<fault name="IOException">
+<soap:fault name="IOException" use="literal"/>
+</fault>
 </operation>
 <operation name="addReceta">
 <soap:operation soapAction=""/>
@@ -190,15 +236,6 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="obtenerRecetario">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="crearRecetario">
 <soap:operation soapAction=""/>
 <input>
@@ -208,7 +245,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="validarXSD">
+<operation name="obtenerRecetario">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
