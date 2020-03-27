@@ -19,7 +19,8 @@ import serviciosweb.Recetario;
 import serviciosweb.ServicioWebRecetario;
 import serviciosweb.ServicioWebRecetario_Service;
 public class Modelo {
-     ServicioWebRecetario_Service servicioWebRecetario_Service = new ServicioWebRecetario_Service();
+    
+    ServicioWebRecetario_Service servicioWebRecetario_Service = new ServicioWebRecetario_Service();
     ServicioWebRecetario SWRPort = servicioWebRecetario_Service.getServicioWebRecetarioPort();
     
     

@@ -40,7 +40,7 @@ public class servicioWebRecetario {
     private File carpeta = new File(sCarpAct);
     private String ruta = carpeta.getPath();
     private ArrayList<Receta> recetas = new ArrayList();
-//Clases del modeo
+//Clases del modelo
     
     @WebMethod(operationName = "crearRecetario")
     public void crearRecetario(@WebParam(name = "recetario") Recetario recetario) {
@@ -73,12 +73,12 @@ public class servicioWebRecetario {
 
     }
     @WebMethod(operationName = "obtenerRecetario")
-    public Recetario obtenerRecetario() {
+    public Recetario obtenerRecetario() { 
         return recetario;
     }
 
  //exportar e importar
-    //el servicio te exporta el xmlen el servidor y luego lo muueve al cliente, port tanto la funcion tiene un return de fichero
+    //el servicio te exporta el xmlen el servidor y luego lo muueve al cliente, por tanto la funcion tiene un return de fichero
     @WebMethod(operationName = "exportarRecetario")
     public  byte[]  exportarRecetario(@WebParam(name = "nombreFichero") String nombreFichero) throws IOException {
         mrs.crearXMLRecetario(nombreFichero, recetario, ruta);
