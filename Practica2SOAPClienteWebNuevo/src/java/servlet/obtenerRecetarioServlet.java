@@ -41,8 +41,8 @@ public class obtenerRecetarioServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         
-            Integer codigo = Integer.parseInt(request.getParameter("codigo"));
-            Recetario recetario = SWRPort.obtenerRecetario(); //no se si es necesario poner el atributo codigo
+            Integer codigo = Integer.parseInt(request.getParameter("codigo")); //no se si es necesario poner el atributo codigo
+            Recetario recetario = SWRPort.obtenerRecetario(); 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
