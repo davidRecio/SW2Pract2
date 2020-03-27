@@ -41,9 +41,9 @@ public class crearRecetarioServlet extends HttpServlet {
 
         Integer codigo = Integer.parseInt(request.getParameter("codigo"));
         //como me pide un recetario creo uno
-        //y despues de crearlo esta vacio
-        //ahora hay que ponerle setNombre y tal para meter recetas y despues el addRecetario
-        //modeificar menu
+        //y despues al crearlo, esta vacio
+        //por ultimo, hay que ponerle los sets(setNombre,precio...) para meter recetas y despues el addRecetario
+       
         Recetario recetario = new Recetario();
         SWRPort.crearRecetario(recetario); //Receta recetario
         
@@ -52,8 +52,8 @@ public class crearRecetarioServlet extends HttpServlet {
         
         recetario.setNombre(nombre);
         recetario.setPrecio(precio);
-        //Mal
-        //SWRPort.addReceta(recetario);
+        //mirar
+        SWRPort.crearRecetario(recetario);
         
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
