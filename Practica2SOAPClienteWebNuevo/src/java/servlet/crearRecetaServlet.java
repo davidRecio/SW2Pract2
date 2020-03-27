@@ -55,15 +55,14 @@ public class crearRecetaServlet extends HttpServlet {
         //String ingrediente = request.getParameter("ingrediente");
         ingrediente.add(request.getParameter("ingrediente"));
         
-        // como se hace, es double, parsear
-        String precio = request.getParameter("precio");
+        Double precio = Double.parseDouble(request.getParameter("precio"));
         
         receta.setNombre(nombre);
         receta.setDificultad(dificultad);
-        receta.setPrecio(Double.valueOf(Long.valueOf(precio)));
+        receta.setPrecio(precio);
         
         
-        SWRPort.addReceta(receta); //nombreReceta,dificultadReceta
+        SWRPort.addReceta(receta);
             
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");

@@ -41,6 +41,8 @@ public class obtenerRecetarioServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         
+            Integer codigo = Integer.parseInt(request.getParameter("codigo"));
+            Recetario recetario = SWRPort.obtenerRecetario(); //no se si es necesario poner el atributo codigo
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -49,13 +51,8 @@ public class obtenerRecetarioServlet extends HttpServlet {
             out.println("<title>Obtener Recetario</title>");
             out.println("</head>");
             out.println("<body>");
-
-            Integer codigo = Integer.parseInt(request.getParameter("codigo"));
-            Recetario recetario = SWRPort.obtenerRecetario(); //no se si es necesario poner el atributo codigo
             
-            out.println("<h1>Servlet obtenerRecetarioServlet at " + request.getContextPath() + "</h1>");
-            //mal
-            //mirar
+            //mirar y arreglar hay que llamar a las recetas
 //            for (Recetario recetario : ServicioWebRecetario.getRecetas()) {
 //                out.println("<h3>Nombre de la receta: " + receta.getNombre() + "</h3>");
 //                out.println("<h3>Difucultad de la receta: " + receta.getDificultad()+ "</h3>");

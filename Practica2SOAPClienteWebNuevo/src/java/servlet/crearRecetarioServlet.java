@@ -46,6 +46,15 @@ public class crearRecetarioServlet extends HttpServlet {
         //modeificar menu
         Recetario recetario = new Recetario();
         SWRPort.crearRecetario(recetario); //Receta recetario
+        
+        String nombre = request.getParameter("nombre");
+        Double precio = Double.parseDouble(request.getParameter("precio"));
+        
+        recetario.setNombre(nombre);
+        recetario.setPrecio(precio);
+        //Mal
+        //SWRPort.addReceta(recetario);
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
