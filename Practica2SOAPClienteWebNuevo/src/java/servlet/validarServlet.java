@@ -41,7 +41,7 @@ public class validarServlet extends HttpServlet {
         Part fichero = request.getPart("fichero");
         File agenda = Paths.get(fichero.getSubmittedFileName()).toFile();
         //mirarlo
-        //boolean validar = controladorWeb_Service.getValidarPort().validarXSD(recetario.toString());
+        //boolean validar = servicioWebRecetario_Service.getServicioWebRecetarioPort().validarXSD(recetario.toString());       //getValidarPort().validarXSD(recetario.toString());
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
