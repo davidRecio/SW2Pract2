@@ -1,8 +1,6 @@
 package Funcionalidad;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -24,9 +22,11 @@ public class Menu {
     private Integer opcion = -1;
     private Modelo modelo = new Modelo();
     private String respuesta, respuesta2, respuesta4;
-
+private String sCarpAct = System.getProperty("user.dir");
+    private File carpeta = new File(sCarpAct);
+    private String ruta = carpeta.getPath();
     public void menu() {
-      modelo.start();
+        modelo.start();
         while (opcion != 0) {
             System.out.println("-------------------------------------------------------------------Menú--------------------------------------------------------------------------------");
             System.out.println("Elige una opcion, pulsa 0 para salir");
@@ -38,23 +38,30 @@ public class Menu {
                 case 0:
                     System.out.println("Saliendo del programa");
                     break;
-//                case 1:
-//                    // Importar recetario
-//                    System.out.println("Introduce el nombre del fichero sin la extensión del recetario");
-//                    respuesta = scanner.nextLine();
-//                    modelo.importarRecetario(respuesta);
-//                    break;
+                case 1:
+                    // Importar recetario
+                    System.out.println("Introduce el nombre del fichero sin la extensión del recetario");
+                    respuesta = scanner.nextLine();
+                    File file = new File(ruta+"/files/xml/" + respuesta + ".xml");
+                     {
+                        try {
+                            modelo.importarRecetario(file);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    break;
                 case 2:
                     //Exportar recetario
                     System.out.println("Introduce el nombre del fichero sin la extensión del recetario");
                     respuesta = scanner.nextLine();
-            {
-                try {
-                    leerBytes(modelo.exportarRecetario(respuesta));
-                } catch (IOException_Exception ex) {
-                    Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+                     {
+                        try {
+                            modelo.leerBytes(modelo.exportarRecetario(respuesta),respuesta);
+                        } catch (IOException_Exception ex) {
+                            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
                     break;
 //                case 3:
 //                    //exportar receta
@@ -78,7 +85,7 @@ public class Menu {
                     System.out.println("Introduce el precio del recetario");
                     respuesta2 = scanner.nextLine();
 
-                   modelo.crearRecetario(modelo.crearRecetarioEsructura(respuesta,Double.parseDouble(respuesta2)));
+                    modelo.crearRecetario(modelo.crearRecetarioEsructura(respuesta, Double.parseDouble(respuesta2)));
 
                     break;
                 case 6:
@@ -95,8 +102,8 @@ public class Menu {
                     break;
                 case 7:
                     // Listar recetas
-                   
-                      listarRecetario(modelo.obtenerRecetario());
+
+                    listarRecetario(modelo.obtenerRecetario());
 
                     break;
                 case 8:
@@ -104,19 +111,16 @@ public class Menu {
                     System.out.println("Introduce el nombre de la receta");
                     respuesta = scanner.nextLine();
                     try {
-                      
-                        listarReceta(  modelo.obtenerReceta(respuesta));
+
+                        listarReceta(modelo.obtenerReceta(respuesta));
 
                     } catch (Exception e) {
 
-                        
-                            System.err.println("No existe la receta " + respuesta + " en ningun lado");
-                        
+                        System.err.println("No existe la receta " + respuesta + " en ningun lado");
 
                     }
 
                     break;
-             
 
 //                case 10:
 //                    // validar XSD
@@ -146,23 +150,21 @@ public class Menu {
         return ingredientes;
     }
 
-
-
     private boolean listarRecetario(Recetario recetario) {
         if (recetario == null) {
             return false;
         } else {
-             System.out.println("El recetario "+recetario.getNombre());
-              System.out.println("Cuesta: "+recetario.getPrecio());
-              try {
-                  System.out.println("Posee las siguientes recetas: ");
-            for (Receta receta : recetario.getRecetas().getRecetas()) {
-                System.out.println(receta.getNombre());
-            }
+            System.out.println("El recetario " + recetario.getNombre());
+            System.out.println("Cuesta: " + recetario.getPrecio());
+            try {
+                System.out.println("Posee las siguientes recetas: ");
+                for (Receta receta : recetario.getRecetas().getRecetas()) {
+                    System.out.println(receta.getNombre());
+                }
             } catch (Exception e) {
                 System.out.println("No posee recetas");
             }
-          
+
             return true;
         }
 
@@ -182,27 +184,6 @@ public class Menu {
             return true;
         }
 
-    }
-
-    private void leerBytes(byte[] exportarRecetario){
-        FileOutputStream fos = null;
-        try {
-            File someFile = new File("./recetario.xml");
-            fos = new FileOutputStream(someFile);
-            fos.write(exportarRecetario);
-            fos.flush();
-            fos.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                fos.close();
-            } catch (IOException ex) {
-                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
     }
 
 }

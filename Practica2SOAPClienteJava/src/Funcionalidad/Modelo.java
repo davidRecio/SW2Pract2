@@ -9,8 +9,15 @@ package Funcionalidad;
  *
  * @author david
  */
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import serviciosweb.IOException_Exception;
 import serviciosweb.Receta.Ingrediente;
 import serviciosweb.Receta;
@@ -51,8 +58,12 @@ public class Modelo {
     //imports y exports
     
     protected  byte[]  exportarRecetario(String nombreFichero) throws IOException_Exception{
-    //tiene q dar un file
+   
     return SWRPort.exportarRecetario(nombreFichero);
+    }
+       protected  void  importarRecetario(File fichero) throws IOException {
+           SWRPort.importarRecetario(converterByte(fichero));
+   
     }
     
     //creador del entorno
@@ -80,6 +91,57 @@ public class Modelo {
 
         return receta;
 
+    }
+    //creacion de fichero a byte y al reves
+     private  byte[] converterByte( File file ) throws FileNotFoundException, IOException {
+       
+ 
+        FileInputStream fis = new FileInputStream(file);
+        //System.out.println(file.exists() + "!!");
+        //InputStream in = resource.openStream();
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        byte[] buf = new byte[1024];
+        try {
+            for (int readNum; (readNum = fis.read(buf)) != -1;) {
+                bos.write(buf, 0, readNum); //no doubt here is 0
+                //Writes len bytes from the specified byte array starting at offset off to this byte array output stream.
+                System.out.println("read " + readNum + " bytes,");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Modelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        byte[] bytes = bos.toByteArray();
+         bos.close();
+         File fileAux=new File(file.getPath().substring(0, file.getPath().length()-4));
+         fileAux.delete();
+        return bytes;
+        //below is the different part
+//        File someFile = new File("java2.pdf");
+//        FileOutputStream fos = new FileOutputStream(someFile);
+//        fos.write(bytes);
+//        fos.flush();
+//        fos.close();
+    }
+ protected void leerBytes(byte[] exportarRecetario,String nombreFichero){
+        FileOutputStream fos = null;
+        try {
+            File someFile = new File("./files/xml/"+nombreFichero+".xml");
+            fos = new FileOutputStream(someFile);
+            fos.write(exportarRecetario);
+            fos.flush();
+            fos.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
 }

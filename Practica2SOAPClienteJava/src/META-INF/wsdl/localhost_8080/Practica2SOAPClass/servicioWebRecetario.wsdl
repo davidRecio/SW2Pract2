@@ -49,15 +49,6 @@
 <message name="exportarRecetaResponse">
 <part name="parameters" element="tns:exportarRecetaResponse"/>
 </message>
-<message name="converterByte">
-<part name="parameters" element="tns:converterByte"/>
-</message>
-<message name="converterByteResponse">
-<part name="parameters" element="tns:converterByteResponse"/>
-</message>
-<message name="FileNotFoundException">
-<part name="fault" element="tns:FileNotFoundException"/>
-</message>
 <message name="addReceta">
 <part name="parameters" element="tns:addReceta"/>
 </message>
@@ -111,12 +102,6 @@
 <operation name="exportarReceta">
 <input wsam:Action="http://serviciosWeb/servicioWebRecetario/exportarRecetaRequest" message="tns:exportarReceta"/>
 <output wsam:Action="http://serviciosWeb/servicioWebRecetario/exportarRecetaResponse" message="tns:exportarRecetaResponse"/>
-</operation>
-<operation name="converterByte">
-<input wsam:Action="http://serviciosWeb/servicioWebRecetario/converterByteRequest" message="tns:converterByte"/>
-<output wsam:Action="http://serviciosWeb/servicioWebRecetario/converterByteResponse" message="tns:converterByteResponse"/>
-<fault message="tns:FileNotFoundException" name="FileNotFoundException" wsam:Action="http://serviciosWeb/servicioWebRecetario/converterByte/Fault/FileNotFoundException"/>
-<fault message="tns:IOException" name="IOException" wsam:Action="http://serviciosWeb/servicioWebRecetario/converterByte/Fault/IOException"/>
 </operation>
 <operation name="addReceta">
 <input wsam:Action="http://serviciosWeb/servicioWebRecetario/addRecetaRequest" message="tns:addReceta"/>
@@ -202,21 +187,6 @@
 <output>
 <soap:body use="literal"/>
 </output>
-</operation>
-<operation name="converterByte">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="FileNotFoundException">
-<soap:fault name="FileNotFoundException" use="literal"/>
-</fault>
-<fault name="IOException">
-<soap:fault name="IOException" use="literal"/>
-</fault>
 </operation>
 <operation name="addReceta">
 <soap:operation soapAction=""/>

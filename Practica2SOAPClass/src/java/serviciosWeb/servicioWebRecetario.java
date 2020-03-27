@@ -81,14 +81,16 @@ public class servicioWebRecetario {
     //el servicio te exporta el xmlen el servidor y luego lo muueve al cliente, por tanto la funcion tiene un return de fichero
     @WebMethod(operationName = "exportarRecetario")
     public  byte[]  exportarRecetario(@WebParam(name = "nombreFichero") String nombreFichero) throws IOException {
-        mrs.crearXMLRecetario(nombreFichero, recetario, ruta);
+        mrs.crearXMLRecetario(nombreFichero+".xml", recetario, ruta);
          File file = new File(ruta+"/files/xml/"+ nombreFichero+".xml");
          return converterByte(file);
     }
 //parametro de entrada que sea unchero
     @WebMethod(operationName = "importarRecetario")
-    public void importarRecetario(@WebParam(name = "fichero") File fichero) {
-        recetario = mrs.importarRecetario(fichero);
+    public void importarRecetario(@WebParam(name = "bytes") byte[] bytes) {
+       File file= new File( leerBytes(bytes).getPath());
+        recetario = mrs.importarRecetario(file);
+        file.delete();
 
     }
 
@@ -262,7 +264,9 @@ public class servicioWebRecetario {
             }
         }
     }
-      public  byte[] converterByte( File file ) throws FileNotFoundException, IOException {
+    
+    //creacion de fichero a byte y al reves
+      private  byte[] converterByte( File file ) throws FileNotFoundException, IOException {
        
  
         FileInputStream fis = new FileInputStream(file);
@@ -282,7 +286,7 @@ public class servicioWebRecetario {
        
         byte[] bytes = bos.toByteArray();
          bos.close();
-         File fileAux=new File(file.getPath().substring(0, file.getPath().length()-4));
+         File fileAux=new File(file.getPath());
          fileAux.delete();
         return bytes;
         //below is the different part
@@ -292,5 +296,26 @@ public class servicioWebRecetario {
 //        fos.flush();
 //        fos.close();
     }
-
+ private File leerBytes(byte[] importarRecetario){
+        FileOutputStream fos = null;
+        File file = new File("./recetario.xml");
+        try {
+            
+            fos = new FileOutputStream(file);
+            fos.write(importarRecetario);
+            fos.flush();
+            fos.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(servicioWebRecetario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(servicioWebRecetario.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException ex) {
+                Logger.getLogger(servicioWebRecetario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return file;
+    }
 }
