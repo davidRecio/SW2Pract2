@@ -5,7 +5,6 @@
  */
 package servlet;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,22 +34,22 @@ public class validarServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         ServicioWebRecetario_Service servicioWebRecetario_Service = new ServicioWebRecetario_Service();
-    
+
         Part fichero = request.getPart("fichero");
-        File agenda = Paths.get(fichero.getSubmittedFileName()).toFile();
+        File recetario1 = Paths.get(fichero.getSubmittedFileName()).toFile();
         //mirarlo
-        //boolean validar = servicioWebRecetario_Service.getServicioWebRecetarioPort().validarXSD(recetario.toString());       //getValidarPort().validarXSD(recetario.toString());
+        String validar = servicioWebRecetario_Service.getServicioWebRecetarioPort().validarXSD(recetario1.toString());//getValidarPort().validarXSD(recetario.toString());
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Validar Servlet</title>");            
+            out.println("<title>Validar Servlet</title>");
             out.println("</head>");
             out.println("<body>");
-            
+
 //            if(validar){
 //            out.println("<h1>" + "El fichero es valido" +"</h1>");
 //            } else{

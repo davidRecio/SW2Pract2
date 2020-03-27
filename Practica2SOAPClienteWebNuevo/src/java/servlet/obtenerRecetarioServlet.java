@@ -5,7 +5,6 @@
  */
 package servlet;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -21,7 +20,7 @@ import serviciosweb.ServicioWebRecetario_Service;
  *
  * @author darth
  */
-@WebServlet(name="obtenerRecetario", urlPatterns={"/obtenerRecetario"})
+@WebServlet(name = "obtenerRecetario", urlPatterns = {"/obtenerRecetario"})
 public class obtenerRecetarioServlet extends HttpServlet {
 
     /**
@@ -35,11 +34,10 @@ public class obtenerRecetarioServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         ServicioWebRecetario_Service servicioWebRecetario_Service = new ServicioWebRecetario_Service();
         ServicioWebRecetario SWRPort = servicioWebRecetario_Service.getServicioWebRecetarioPort();
-        
-        
+
         response.setContentType("text/html;charset=UTF-8");
         //Mal
         //Return 1 = servicioWebRecetario_Service.getServicioWebRecetarioPort().obtenerRecetario();
@@ -48,10 +46,10 @@ public class obtenerRecetarioServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Obtener Recetario</title>");            
+            out.println("<title>Obtener Recetario</title>");
             out.println("</head>");
             out.println("<body>");
-          
+
             out.println("<h1>Servlet obtenerRecetarioServlet at " + request.getContextPath() + "</h1>");
             //mal
             //mirar

@@ -5,7 +5,6 @@
  */
 package servlet;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -36,25 +35,30 @@ public class crearRecetarioServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //hay que añadir 
-        
+
         ServicioWebRecetario_Service servicioWebRecetario_Service = new ServicioWebRecetario_Service();
         ServicioWebRecetario SWRPort = servicioWebRecetario_Service.getServicioWebRecetarioPort();
-        
+
         Integer codigo = Integer.parseInt(request.getParameter("codigo"));
         //Mal
-        //SWRPort.crearRecetario("recetario1"); //Receta recetario
+        //como me pide un recetario creo uno
+        //y despues de crearlo esta vacio
+        //ahora hay que ponerle setNOmbre y tal para meter recetas y despues el addRecetario
+        //modeificar menu
+        Recetario recetario = new Recetario();
+        SWRPort.crearRecetario(recetario); //Receta recetario
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Crear Recetario</title>");            
+            out.println("<title>Crear Recetario</title>");
             out.println("</head>");
             out.println("<body>");
             //Cambiar
             out.println("<h1>Recetario: " + request.getContextPath() + "</h1>");
-            
+
             // poner aqui lo de a href.. para volver al menu
             out.println("</body>");
             out.println("</html>");
