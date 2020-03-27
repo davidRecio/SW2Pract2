@@ -150,7 +150,7 @@ public class servicioWebRecetario {
             }
         }
         crearXSD();
-        crearRecetario1();
+        //crearRecetario1();
     }
 
     private void crearXSD() {

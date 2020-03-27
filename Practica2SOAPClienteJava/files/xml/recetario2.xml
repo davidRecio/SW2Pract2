@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Recetario>
-    <nombre>rece</nombre>
+    <nombre>recetario2</nombre>
     <recetas>
         <recetas dificultad="Facil">
-            <nombre>t</nombre>
+            <nombre>recetaBorrar</nombre>
             <ingrediente>
                 <ingrediente>nada</ingrediente>
             </ingrediente>
