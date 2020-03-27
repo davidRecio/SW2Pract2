@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import serviciosweb.Receta;
+import serviciosweb.Recetario;
 import serviciosweb.ServicioWebRecetario;
 import serviciosweb.ServicioWebRecetario_Service;
 
@@ -39,8 +40,7 @@ public class obtenerRecetarioServlet extends HttpServlet {
         ServicioWebRecetario SWRPort = servicioWebRecetario_Service.getServicioWebRecetarioPort();
 
         response.setContentType("text/html;charset=UTF-8");
-        //Mal
-        //Return 1 = servicioWebRecetario_Service.getServicioWebRecetarioPort().obtenerRecetario();
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -50,10 +50,13 @@ public class obtenerRecetarioServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
 
+            Integer codigo = Integer.parseInt(request.getParameter("codigo"));
+            Recetario recetario = SWRPort.obtenerRecetario(); //no se si es necesario poner el atributo codigo
+            
             out.println("<h1>Servlet obtenerRecetarioServlet at " + request.getContextPath() + "</h1>");
             //mal
             //mirar
-//            for (Receta receta : ServicioWebRecetario.getRecetas()) {
+//            for (Recetario recetario : ServicioWebRecetario.getRecetas()) {
 //                out.println("<h3>Nombre de la receta: " + receta.getNombre() + "</h3>");
 //                out.println("<h3>Difucultad de la receta: " + receta.getDificultad()+ "</h3>");
 //                out.println("<h3>Ingredientes de la receta: " + receta.getIngrediente() + "</h3>");

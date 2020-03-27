@@ -40,10 +40,9 @@ public class crearRecetarioServlet extends HttpServlet {
         ServicioWebRecetario SWRPort = servicioWebRecetario_Service.getServicioWebRecetarioPort();
 
         Integer codigo = Integer.parseInt(request.getParameter("codigo"));
-        //Mal
         //como me pide un recetario creo uno
         //y despues de crearlo esta vacio
-        //ahora hay que ponerle setNOmbre y tal para meter recetas y despues el addRecetario
+        //ahora hay que ponerle setNombre y tal para meter recetas y despues el addRecetario
         //modeificar menu
         Recetario recetario = new Recetario();
         SWRPort.crearRecetario(recetario); //Receta recetario
