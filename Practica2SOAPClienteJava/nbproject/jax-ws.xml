@@ -2,10 +2,10 @@
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
   <services/>
   <clients>
-    <client name="ControladorWeb">
-      <wsdl-url>http://localhost:8080/Practica2SOAPClass/ControladorWeb?wsdl</wsdl-url>
-      <local-wsdl-file>localhost_8080/Practica2SOAPClass/ControladorWeb.wsdl</local-wsdl-file>
-      <package-name forceReplace="true">practica2soapclientejava</package-name>
+    <client name="servicioWebRecetario">
+      <wsdl-url>http://localhost:8080/Practica2SOAPClass/servicioWebRecetario?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8080/Practica2SOAPClass/servicioWebRecetario.wsdl</local-wsdl-file>
+      <package-name>serviciosweb</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -22,7 +22,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8080/Practica2SOAPClass/ControladorWeb?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8080/Practica2SOAPClass/servicioWebRecetario?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -31,10 +31,6 @@
         <wsimport-option>
           <wsimport-option-name>xendorsed</wsimport-option-name>
           <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>package</wsimport-option-name>
-          <wsimport-option-value>practica2soapclientejava</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>
