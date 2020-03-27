@@ -40,7 +40,7 @@ public class obtenerRecetaServlet extends HttpServlet {
         // no se si va dentro o fuera del try
         ServicioWebRecetario_Service servicioWebRecetario_Service = new ServicioWebRecetario_Service();
         
-        //mal
+        
         ServicioWebRecetario SWRPort = (ServicioWebRecetario) servicioWebRecetario_Service.getServicioWebRecetarioPort().obtenerReceta("Lasanna");
         
         Receta receta = new Receta();

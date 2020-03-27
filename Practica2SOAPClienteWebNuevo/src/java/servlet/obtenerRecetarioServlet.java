@@ -42,7 +42,7 @@ public class obtenerRecetarioServlet extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
         //Mal
-        //return 1 = controladorWeb_Service.getControladorWebPort().obtenerRecetario();
+        //Return 1 = servicioWebRecetario_Service.getServicioWebRecetarioPort().obtenerRecetario();
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");

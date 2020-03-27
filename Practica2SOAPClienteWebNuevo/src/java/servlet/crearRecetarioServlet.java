@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import serviciosweb.Recetario;
 import serviciosweb.ServicioWebRecetario;
 import serviciosweb.ServicioWebRecetario_Service;
 
@@ -41,7 +42,7 @@ public class crearRecetarioServlet extends HttpServlet {
         
         Integer codigo = Integer.parseInt(request.getParameter("codigo"));
         //Mal
-        //CWPort.crearRecetario("recetario1",recetas,56.50); //nombreRecetario,recetaArrayList,precioRecetario
+        //SWRPort.crearRecetario("recetario1"); //Receta recetario
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
