@@ -5,25 +5,19 @@
  */
 package servlets;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import serviciosweb.Receta;
-import serviciosweb.ServicioWebRecetario;
-import serviciosweb.ServicioWebRecetario_Service;
 
 /**
  *
  * @author david
  */
-public class crearReceta extends HttpServlet {
+public class listarReceta extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,37 +30,31 @@ public class crearReceta extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         ServicioWebRecetario_Service servicioWebRecetario_Service = new ServicioWebRecetario_Service();
-         ServicioWebRecetario SWRPort = servicioWebRecetario_Service.getServicioWebRecetarioPort();
-         
         response.setContentType("text/html;charset=UTF-8");
-        String nombre = request.getParameter("nombre"); 
-        String dificultad = request.getParameter("dificultad");
-        String ingredientes =request.getParameter("ingredientes");
-        Double precio = Double.parseDouble(request.getParameter("precio"));
-         
-         Modelo mod = new Modelo();
-         
-        String[] split = ingredientes.split(",");
-       ArrayList<String> ar =new ArrayList();
-       List<String> listaCadenas=Arrays.asList(split);
-       ar.addAll(listaCadenas);
-      
-        Receta receta= mod.crearRecetaEsructura(nombre, dificultad, precio, ar) ;
+        
+         String nombre = request.getParameter("nombre"); 
+          
+          
+           Modelo mod = new Modelo();
+           
+         Receta receta=  mod.obtenerReceta(nombre);
         try (PrintWriter out = response.getWriter()) {
-            
-             
+            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet crearReceta</title>");            
+            out.println("<title>Servlet listarReceta</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet crearReceta at " + receta.getIngrediente().getIngrediente().get(1)+"</h1>");
+            out.println("<li>La receta es: " + receta.getNombre()+ "</li>");
+            out.println("<li>Su dificultad es:  " + receta.getDificultad()+ "</li>");
+            out.println("<li>Su precio es:  " + receta.getPrecio()+ "</li>");
+            out.println("<li>Sus ingredientes son :</li>");
+            for (String ele : receta.getIngrediente().getIngrediente()) {
+                out.println("<li>" + ele+ "</li>");
+            }
             out.println("</body>");
             out.println("</html>");
-            
-            
         }
     }
 

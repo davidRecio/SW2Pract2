@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Funcionalidad;
+package servlets;
 
 /**
  *
@@ -26,10 +26,9 @@ import serviciosweb.Recetario;
 import serviciosweb.ServicioWebRecetario;
 import serviciosweb.ServicioWebRecetario_Service;
 public class Modelo {
-    
-    ServicioWebRecetario_Service servicioWebRecetario_Service = new ServicioWebRecetario_Service();
-    ServicioWebRecetario SWRPort = servicioWebRecetario_Service.getServicioWebRecetarioPort();
 
+    ServicioWebRecetario_Service servicioWebRecetario_Service = new ServicioWebRecetario_Service();
+      ServicioWebRecetario SWRPort = servicioWebRecetario_Service.getServicioWebRecetarioPort();
     
     private Recetario recetario = new Recetario();
     //las funcionalidades obtenidas del servicio
@@ -147,14 +146,14 @@ public class Modelo {
             fos.flush();
             fos.close();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Modelo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Modelo.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 fos.close();
             } catch (IOException ex) {
-                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Modelo.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

@@ -11,15 +11,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import serviciosweb.Receta;
 import serviciosweb.Recetario;
-import serviciosweb.ServicioWebRecetario;
-import serviciosweb.ServicioWebRecetario_Service;
 
 /**
  *
- * @author darth
+ * @author david
  */
-public class crearRecetarioServlet extends HttpServlet {
+public class listarRecetario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,30 +31,23 @@ public class crearRecetarioServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        ServicioWebRecetario_Service servicioWebRecetario_Service = new ServicioWebRecetario_Service();
-        ServicioWebRecetario SWRPort = servicioWebRecetario_Service.getServicioWebRecetarioPort();
-        
-        Recetario recetario = new Recetario();
-        SWRPort.crearRecetario(recetario); //Receta recetario
-        
-        String nombre = request.getParameter("nombre");
-        Double precio = Double.parseDouble(request.getParameter("precio"));
-        
-        recetario.setNombre(nombre);
-        recetario.setPrecio(precio);
-        
         response.setContentType("text/html;charset=UTF-8");
+        Modelo mod = new Modelo();
+        Recetario recetario=mod.obtenerRecetario();
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet crear recetario</title>");            
+            out.println("<title>Servlet listarRecetario</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Rcetario creado con el nombre y el precio:" + nombre + precio +"<h1>");
-            //out.println("<h1>Servlet crearRecetarioServlet at " + request.getContextPath() + "</h1>");
+             out.println("<li>El recetario es: " + recetario.getNombre()+ "</li>");
+            out.println("<li>Su precio es:  " + recetario.getPrecio()+ "</li>");
+            out.println("<li>Sus recetas son :</li>");
+           for (Receta receta : recetario.getRecetas().getRecetas()) {
+                out.println("<li>" + receta.getNombre()+ "</li>");
+            }
             out.println("</body>");
             out.println("</html>");
         }
