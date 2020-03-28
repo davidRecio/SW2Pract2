@@ -29,6 +29,10 @@ public class Modelo {
 
     ServicioWebRecetario_Service servicioWebRecetario_Service = new ServicioWebRecetario_Service();
       ServicioWebRecetario SWRPort = servicioWebRecetario_Service.getServicioWebRecetarioPort();
+      
+       private String sCarpAct = System.getProperty("user.dir");
+    private File carpeta = new File(sCarpAct);
+    private String ruta = carpeta.getPath();
     
     private Recetario recetario = new Recetario();
     //las funcionalidades obtenidas del servicio
@@ -139,6 +143,7 @@ public class Modelo {
     }
  protected void leerBytes(byte[] exportarRecetario,String nombreFichero){
         FileOutputStream fos = null;
+        System.err.println(ruta);
         try {
             File someFile = new File("./files/xml/"+nombreFichero+".xml");
             fos = new FileOutputStream(someFile);

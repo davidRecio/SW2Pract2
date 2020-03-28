@@ -20,6 +20,10 @@
         <servlet-name>listarRecetario</servlet-name>
         <servlet-class>servlets.listarRecetario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>exportRecetario</servlet-name>
+        <servlet-class>servlets.exportRecetario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>crearReceta</servlet-name>
         <url-pattern>/crearReceta</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>listarRecetario</servlet-name>
         <url-pattern>/listarRecetario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>exportRecetario</servlet-name>
+        <url-pattern>/exportRecetario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
