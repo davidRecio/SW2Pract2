@@ -34,6 +34,7 @@ public class Modelo {
     private File carpeta = new File(sCarpAct);
     private String ruta = carpeta.getPath();
     
+    
     private Recetario recetario = new Recetario();
     //las funcionalidades obtenidas del servicio
     //tratamiento obj
