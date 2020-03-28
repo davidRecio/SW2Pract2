@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +40,7 @@ public class exportRecetario extends HttpServlet {
         
         String nombre = request.getParameter("nombre"); 
         Modelo mod = new Modelo();
+       
         try {
             mod.leerBytes(mod.exportarRecetario(nombre), nombre);
         } catch (IOException_Exception ex) {
