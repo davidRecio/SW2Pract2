@@ -30,7 +30,7 @@ public class Menu {
             try {
                 System.out.println("-------------------------------------------------------------------Menú--------------------------------------------------------------------------------");
                 System.out.println("Elige una opcion, pulsa 0 para salir");
-                System.out.println("1= Importar recetario, 2=Exportar recetario, 3=Importar Receta, 4=Exportar Receta,,");
+                System.out.println("1= Importar recetario, 2=Exportar recetario, 3=Exportar Receta, 4=Importar Receta");
                 System.out.println("5= crea el recetario, 6=crea recetas, 7=Borra receta, 8=Lista recetas,");
                 System.out.println("9=Lista la información de la receta escogida, 10=Valida fichero con XSD ");
                 opcion = Integer.parseInt(scanner.nextLine());

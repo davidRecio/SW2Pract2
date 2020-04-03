@@ -2,34 +2,34 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- String nombre = request.getParameter("nombre"); 
-        Modelo mod = new Modelo();
-        
-         try {
-            mod.leerBytes(mod.exportarRecetario(nombre), nombre);
-        } catch (IOException_Exception ex) {
-            Logger.getLogger(exportRecetario.class.getName()).log(Level.SEVERE, null, ex);
-        }
  */
 package servlets;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import java.io.*;
-import java.util.*;
-import java.net.*;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import serviciosweb.IOException_Exception;
 
-
 /**
-*
+ *
+ * @author david
+ */
+@WebServlet(name = "exportReceta", urlPatterns = {"/exportReceta"})
+public class exportReceta extends HttpServlet {
 
-This class handles Streaming Data Content
-
-**/
-public class exportRecetario extends HttpServlet {
-
+  
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
     }
@@ -52,23 +52,22 @@ public class exportRecetario extends HttpServlet {
     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String urlstr = null;
-                 
-        String nombre = request.getParameter("nombre"); 
-        Modelo mod = new Modelo();
+              String nombre = request.getParameter("nombre");      
+        
+         Modelo mod = new Modelo();
         
          try {
-            mod.leerBytes(mod.exportarRecetario(nombre), nombre);
+            mod.leerBytes(mod.exportarReceta(nombre+".xml",nombre), nombre);
         } catch (IOException_Exception ex) {
-            Logger.getLogger(exportRecetario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(exportReceta.class.getName()).log(Level.SEVERE, null, ex);
         } 
-        
         try {
             response.reset();
             urlstr = request.getParameter("nombre");
             ServletOutputStream sOutStream = response.getOutputStream();
             streamBinaryData(urlstr, sOutStream, response);
               File someFile = new File("./files/xml/"+nombre+".xml");
-             someFile.delete();
+              someFile.delete();
 
 
         } catch (Exception e) {
@@ -88,15 +87,15 @@ public class exportRecetario extends HttpServlet {
         bis = new BufferedInputStream(new FileInputStream(inFile));
 
         try {
-            //Asignamos el tipo de fichero zip
+//            Asignamos el tipo de fichero zip
             resp.setContentType("application/x-zip-compressed"); //Cualquier mime type
-            //Seteamos el tamaño de la respuesta
+//            Seteamos el tamaño de la respuesta
             resp.setContentLength(tam);
             resp.setHeader("Content-Disposition", "attachment;filename=\"" + file + ".xml\"");
 
             bos = new BufferedOutputStream(outstr);
 
-            // Bucle para leer de un fichero y escribir en el otro.
+//             Bucle para leer de un fichero y escribir en el otro.
             byte[] array = new byte[1000];
             int leidos = bis.read(array);
             while (leidos > 0) {
