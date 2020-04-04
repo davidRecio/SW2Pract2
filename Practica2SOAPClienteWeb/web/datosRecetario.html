@@ -13,9 +13,17 @@ and open the template in the editor.
     <body>
         <h1>Formulario para crear recetarios</h1>
         <form method="post" action="/Practica2SOAPClienteWeb/crearRecetario" name="crearRecetario">
-            Nombre: <input name="nombre"><br>
-            Precio: <input name = "precio"><br>
-            
+            <table border = "0">
+                <tr>
+                    <td width="0%"> Nombre:</td>
+                    <td width="0%"><input name="nombre" type ="text"/></td>
+                </tr>
+                
+                <tr>
+                    <td width="0%"> Precio:</td>
+                    <td width="0%"><input name="precio" type ="text"/></td>
+                </tr>
+                <br>
             <button>Enviar</button>
         </form>
     </body>
